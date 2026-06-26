@@ -1232,8 +1232,57 @@ nav::after {
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Timberland Digital">
 <meta name="theme-color" content="#060E1A">
+
+<style>
+@media (max-width: 768px) {
+  #mobileSplash {
+    position: fixed;
+    inset: 0;
+    background: #00100A;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+  }
+  #mobileSplash img {
+    width: 72%;
+    max-width: 300px;
+    animation: splashPulse 1.5s ease-in-out;
+  }
+  @keyframes splashPulse {
+    0%   { opacity: 0; transform: scale(0.85); }
+    60%  { opacity: 1; transform: scale(1.03); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  #mobileSplash.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+@media (min-width: 769px) {
+  #mobileSplash { display: none !important; }
+}
+</style>
 </head>
 <body>
+
+<div id="mobileSplash">
+  <img src="tdd.png" alt="Timberland Digital Design" />
+</div>
+<script>
+  if (window.innerWidth <= 768) {
+    setTimeout(() => {
+      const splash = document.getElementById('mobileSplash');
+      if (splash) {
+        splash.classList.add('fade-out');
+        setTimeout(() => splash.remove(), 900);
+      }
+    }, 1800);
+  }
+</script>
+
 
 <canvas id="bgCircuit" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.5s ease;"></canvas>
 <nav>
