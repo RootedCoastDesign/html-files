@@ -1235,66 +1235,67 @@ nav::after {
 
 
 <style>
-/* ── MOBILE: logo section first, then hero text ── */
+/* ── MOBILE: logo first, then hero text ── */
 @media (max-width: 768px) {
-  #page-home .hero {
+  /* Make the hero a flex column so we can reorder */
+  section.hero {
     display: flex !important;
     flex-direction: column !important;
     padding-top: 66px !important;
     min-height: auto !important;
     gap: 0 !important;
   }
-  /* Logo panel fills screen — anchored from top so logo sits higher */
+  /* Logo panel: full screen, logo anchored near top */
   .hero-visual {
     order: -1 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    padding-top: 10svh !important;
+    padding-top: 3svh !important;
     min-height: calc(100svh - 66px) !important;
     width: 100% !important;
     position: relative !important;
     background: transparent !important;
   }
-  /* "scroll" label above chevron */
+  /* Fun scroll indicator: "SCROLL" label + bouncing glow arrow */
   .hero-visual::before {
     content: 'scroll';
     position: absolute;
-    bottom: 3.6rem;
+    bottom: calc(22% + 2rem);
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Inter', sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     font-weight: 700;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(0,200,255,0.55);
-    animation: scrollLabelPulse 1.5s ease-in-out infinite;
+    color: #00C8FF;
+    white-space: nowrap;
+    animation: scrollLabelFade 1.6s ease-in-out infinite;
   }
-  @keyframes scrollLabelPulse {
-    0%, 100% { opacity: 0.4; }
-    50%       { opacity: 1; }
+  @keyframes scrollLabelFade {
+    0%, 100% { opacity: 0.3; text-shadow: none; }
+    50%       { opacity: 1;   text-shadow: 0 0 10px rgba(0,200,255,0.8); }
   }
-  /* Glowing double-bounce chevron */
+  /* Clean downward chevron with glow pulse */
   .hero-visual::after {
     content: '';
     position: absolute;
-    bottom: 1.6rem;
-    left: calc(50% - 12px);
-    width: 24px;
-    height: 24px;
+    bottom: 22%;
+    left: calc(50% - 11px);
+    width: 22px;
+    height: 22px;
     border-right: 2.5px solid #00C8FF;
     border-bottom: 2.5px solid #00C8FF;
-    box-shadow: 0 0 6px rgba(0,200,255,0.5), 0 0 14px rgba(0,200,255,0.25);
-    animation: mobileScrollChevron 1.5s ease-in-out infinite;
+    animation: chevronBounce 1.6s ease-in-out infinite;
   }
-  @keyframes mobileScrollChevron {
-    0%   { opacity: 0.3; transform: translateY(0)   rotate(45deg); box-shadow: 0 0 4px rgba(0,200,255,0.2); }
-    50%  { opacity: 1;   transform: translateY(10px) rotate(45deg); box-shadow: 0 0 10px rgba(0,200,255,0.7), 0 0 22px rgba(0,200,255,0.35); }
-    100% { opacity: 0.3; transform: translateY(0)   rotate(45deg); box-shadow: 0 0 4px rgba(0,200,255,0.2); }
+  @keyframes chevronBounce {
+    0%   { opacity: 0.25; transform: translateY(0)   rotate(45deg); box-shadow: none; }
+    50%  { opacity: 1;    transform: translateY(9px) rotate(45deg); box-shadow: 3px 3px 10px rgba(0,200,255,0.7), 3px 3px 22px rgba(0,200,255,0.3); }
+    100% { opacity: 0.25; transform: translateY(0)   rotate(45deg); box-shadow: none; }
   }
-  /* Hero logo sizing on mobile */
+  /* Logo sizing */
   .hero-logo-wrap {
     justify-content: center !important;
     padding: 0 !important;
@@ -1303,7 +1304,7 @@ nav::after {
   .hero-logo-img {
     width: min(360px, 88%) !important;
   }
-  /* Hero text follows below */
+  /* Hero text section below */
   .hero-text {
     order: 0 !important;
     padding: 3rem 5% 4rem !important;
