@@ -88,6 +88,9 @@ module.exports = async (req, res) => {
       mode,
       line_items: lineItems,
       customer_email: customerEmail || undefined,
+      subscription_data: hasSubscription ? {
+        billing_cycle_anchor_config: { type: 'now' },
+      } : undefined,
       metadata: {
         business_name:         businessName || '',
         customer_name:         customerName || '',
