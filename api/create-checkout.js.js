@@ -6,37 +6,40 @@ const PRICE_MAP = {
     type:           'deposit',
     depositPriceId: 'price_1TmQthLHhM9UWHAYH0Um4XRw',
     balancePriceId: 'price_1TmQufLHhM9UWHAYBtspJcZY',
-    fullPrice:      497,
+    fullPrice:      799,
   },
   timber: {
     type:           'deposit',
-    depositPriceId: 'price_1TmQvzLHhM9UWHAYG3Gw9ctP',
+    depositPriceId: 'price_1TmUE3LHhM9UWHAYKe9RCklA',
     balancePriceId: 'price_1TmQwfLHhM9UWHAYZWyZDCd1',
-    fullPrice:      997,
+    fullPrice:      1499,
   },
   oldgrowth: {
     type:           'deposit',
     depositPriceId: 'price_1TmQygLHhM9UWHAYlNf4eTTE',
     balancePriceId: 'price_1TmR3CLHhM9UWHAY2scly7EC',
-    fullPrice:      1997,
+    fullPrice:      2799,
   },
 
   // ── Reskin (full price upfront) ──
-  reskin: { type: 'one_time', priceId: 'price_1TmR4XLHhM9UWHAYfZFWVzOv', fullPrice: 197 },
+  reskin: { type: 'one_time', priceId: 'price_1TmR4XLHhM9UWHAYfZFWVzOv', fullPrice: 349 },
 
   // ── Care Plans (recurring monthly) ──
-  'care-sapling-sa':   { type: 'subscription', priceId: 'price_1TmR5hLHhM9UWHAYpv9coAf3', monthly: 59  },
-  'care-timber-sa':    { type: 'subscription', priceId: 'price_1TmR6PLHhM9UWHAYjgt1SJto', monthly: 99  },
-  'care-oldgrowth-sa': { type: 'subscription', priceId: 'price_1TmR76LHhM9UWHAYJnrfGYED', monthly: 179 },
+  'care-sapling':      { type: 'subscription', priceId: 'price_1TmR5hLHhM9UWHAYpv9coAf3', monthly: 79  },
+  'care-timber':       { type: 'subscription', priceId: 'price_1TmR6PLHhM9UWHAYjgt1SJto', monthly: 129 },
+  'care-oldgrowth':    { type: 'subscription', priceId: 'price_1TmR76LHhM9UWHAYJnrfGYED', monthly: 229 },
+  'care-sapling-sa':   { type: 'subscription', priceId: 'price_1TmR5hLHhM9UWHAYpv9coAf3', monthly: 79  },
+  'care-timber-sa':    { type: 'subscription', priceId: 'price_1TmR6PLHhM9UWHAYjgt1SJto', monthly: 129 },
+  'care-oldgrowth-sa': { type: 'subscription', priceId: 'price_1TmR76LHhM9UWHAYJnrfGYED', monthly: 229 },
 
   // ── Add-Ons (full price upfront) ──
   copywriting: { type: 'one_time', priceId: 'price_1TmR81LHhM9UWHAYWw3k2eAb', fullPrice: 249 },
   photos:      { type: 'one_time', priceId: 'price_1TmR8jLHhM9UWHAYM6A2zhHz', fullPrice: 99  },
-  gbp:         { type: 'one_time', priceId: 'price_1TmR9ILHhM9UWHAYqUY7Ziqu', fullPrice: 79  },
+  gbp:         { type: 'one_time', priceId: 'price_1TmbpULHhM9UWHAYcQigZ6wl', fullPrice: 129 },
   booking:     { type: 'one_time', priceId: 'price_1TmR9mLHhM9UWHAYVpSXlIfa', fullPrice: 149 },
   email:       { type: 'one_time', priceId: 'price_1TmRAMLHhM9UWHAY3YHajIri', fullPrice: 129 },
-  reviews:     { type: 'one_time', priceId: 'price_1TmRBkLHhM9UWHAYsXmLcrvH', fullPrice: 79  },
-  revision:    { type: 'one_time', priceId: 'price_1TmRCCLHhM9UWHAY833eJW2E', fullPrice: 79  },
+  reviews:     { type: 'one_time', priceId: 'price_1TmbqyLHhM9UWHAYnAwkkyMX', fullPrice: 99  },
+  revision:    { type: 'one_time', priceId: 'price_1TmbsDLHhM9UWHAY4GZNbpe4', fullPrice: 99  },
 };
 
 module.exports = async (req, res) => {
@@ -85,6 +88,7 @@ module.exports = async (req, res) => {
       mode,
       line_items: lineItems,
       customer_email: customerEmail || undefined,
+
       metadata: {
         business_name:         businessName || '',
         customer_name:         customerName || '',
