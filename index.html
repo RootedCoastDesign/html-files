@@ -1310,9 +1310,30 @@ nav::after {
     padding: 3rem 5% 4rem !important;
     text-align: center !important;
   }
-  .hero-sub { margin: 0 auto 2rem !important; }
+  /* Eyebrow: remove left-border accent, center it */
+  .hero-eyebrow {
+    border-left: none !important;
+    border: 1px solid rgba(0,200,255,0.3) !important;
+    border-radius: 2px !important;
+    padding: .25rem .9rem !important;
+    display: inline-block !important;
+  }
+  .hero h1 { text-align: center !important; }
+  .hero-sub { margin: 0 auto 2rem !important; text-align: center !important; }
   .hero-actions { justify-content: center !important; }
-  .hero-trust { justify-content: center !important; margin-top: 2rem !important; }
+  /* Trust items: 2-col centered grid */
+  .hero-trust {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: .6rem 1rem !important;
+    margin-top: 2rem !important;
+  }
+  .hero-trust .trust-item {
+    flex: 0 0 auto !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+  .hero-trust .trust-item + .trust-item { border-left: none !important; }
 }
 </style>
 </head>
