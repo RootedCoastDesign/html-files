@@ -255,7 +255,7 @@ footer, .foot-bottom { position: relative; z-index: 2; background: #030A12 !impo
       </div>
 
       <span class="section-label" style="margin-top:1.5rem;display:block">Payment</span>
-      <div class="payment-note">Pay in full below to lock in your project. We'll be in touch within one business day to get the ball rolling.</div>
+      <div class="payment-note">You'll be taken to Stripe to complete payment securely. We'll be in touch within one business day to get the ball rolling.</div>
       <div class="stripe-links" id="stripeLinks"></div>
       <button class="btn-submit" id="btnSubmit" onclick="submitOrder()">Submit Order &amp; Pay Now ↗</button>
     </div>
@@ -385,25 +385,8 @@ function render() {
   document.getElementById('cartTotals').innerHTML = totHtml;
 
   // Stripe links
-  const stripeItems   = keys.filter(k => cart[k].price > 0 && cart[k].stripe);
-  const noStripeItems = keys.filter(k => cart[k].price > 0 && !cart[k].stripe);
-  let html = '';
-  stripeItems.forEach(k => {
-    const p   = cart[k];
-    const amt = p.price;
-    const lbl = 'full';
-    const btn = 'Pay Now ↗';
-    html += `<div class="stripe-link-row">
-      <span class="stripe-link-name">${p.name}</span>
-      <span class="stripe-link-price">$${amt.toLocaleString()} <span>${lbl}</span></span>
-      <a href="${p.stripe}" target="_blank" class="stripe-link-btn">${btn}</a>
-    </div>`;
-  });
-  if (noStripeItems.length) {
-    const tot = noStripeItems.reduce((s,k) => s + cart[k].price, 0);
-    html += `<div class="no-stripe-note">Remaining items: <strong>$${tot.toLocaleString()} due</strong> — we'll send a Stripe payment link to your email within one business day.</div>`;
-  }
-  document.getElementById('stripeLinks').innerHTML = html;
+  // All items route through /api/create-checkout
+  document.getElementById('stripeLinks').innerHTML = '';
 }
 
 function removeItem(k) {
