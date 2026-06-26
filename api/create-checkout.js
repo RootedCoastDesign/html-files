@@ -35,11 +35,11 @@ const PRICE_MAP = {
   // ── Add-Ons (full price upfront) ──
   copywriting: { type: 'one_time', priceId: 'price_1TmR81LHhM9UWHAYWw3k2eAb', fullPrice: 249 },
   photos:      { type: 'one_time', priceId: 'price_1TmR8jLHhM9UWHAYM6A2zhHz', fullPrice: 99  },
-  gbp:         { type: 'one_time', priceId: 'price_1TmR9ILHhM9UWHAYqUY7Ziqu', fullPrice: 129 },
+  gbp:         { type: 'one_time', priceId: 'price_1TmbpULHhM9UWHAYcQigZ6wl', fullPrice: 129 },
   booking:     { type: 'one_time', priceId: 'price_1TmR9mLHhM9UWHAYVpSXlIfa', fullPrice: 149 },
   email:       { type: 'one_time', priceId: 'price_1TmRAMLHhM9UWHAY3YHajIri', fullPrice: 129 },
-  reviews:     { type: 'one_time', priceId: 'price_1TmRBkLHhM9UWHAYsXmLcrvH', fullPrice: 99  },
-  revision:    { type: 'one_time', priceId: 'price_1TmRCCLHhM9UWHAY833eJW2E', fullPrice: 99  },
+  reviews:     { type: 'one_time', priceId: 'price_1TmbqyLHhM9UWHAYnAwkkyMX', fullPrice: 99  },
+  revision:    { type: 'one_time', priceId: 'price_1TmbsDLHhM9UWHAY4GZNbpe4', fullPrice: 99  },
 };
 
 module.exports = async (req, res) => {
