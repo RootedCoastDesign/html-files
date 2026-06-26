@@ -365,20 +365,20 @@ function render() {
   }).join('');
 
   // Totals
-  const oneTime   = keys.reduce((s,k) => s + (cart[k].price||0), 0);
-  const monthly   = keys.reduce((s,k) => s + (cart[k].monthly||0), 0);
-  const depItems  = [];
-  const fullItems = keys.filter(k => cart[k].price > 0);
-  const depAmt    = depItems.reduce((s,k) => s + Math.round(cart[k].price*.5), 0);
-  const fullAmt   = fullItems.reduce((s,k) => s + cart[k].price, 0);
-  const dueToday  = depAmt + fullAmt;
-  const onLaunch  = depItems.reduce((s,k) => s + (cart[k].price - Math.round(cart[k].price*.5)), 0);
+  const monthly    = keys.reduce((s,k) => s + (cart[k].monthly||0), 0);
+  const pkgKeys    = ['sapling','timber','oldgrowth','reskin'];
+  const depItems   = keys.filter(k => cart[k].deposit);
+  const pkgItems   = keys.filter(k => pkgKeys.some(p => k === p));
+  const addonItems = keys.filter(k => !pkgKeys.some(p => k === p) && cart[k].price > 0);
+  const pkgAmt     = pkgItems.reduce((s,k) => s + (cart[k].price||0), 0);
+  const depAmt     = depItems.reduce((s,k) => s + Math.round(cart[k].price*.5), 0);
+  const fullAmt    = addonItems.reduce((s,k) => s + cart[k].price, 0);
+  const onLaunch   = depItems.reduce((s,k) => s + (cart[k].price - Math.round(cart[k].price*.5)), 0);
+  const dueToday   = depAmt + fullAmt + (pkgItems.length && !depItems.length ? pkgAmt : 0);
 
-  let totHtml = `<div class="total-row"><span>Project total</span><span>$${oneTime.toLocaleString()}</span></div>`;
-  if (depItems.length) {
-
-    totHtml += `<div class="total-row"><span>50% due on launch</span><span>$${onLaunch.toLocaleString()}</span></div>`;
-  }
+  let totHtml = '';
+  if (pkgAmt) totHtml += `<div class="total-row"><span>Project total</span><span>$${pkgAmt.toLocaleString()}</span></div>`;
+  if (depItems.length) totHtml += `<div class="total-row"><span>50% due on launch</span><span>$${onLaunch.toLocaleString()}</span></div>`;
   if (fullAmt) totHtml += `<div class="total-row"><span>Add-ons (full price)</span><span>$${fullAmt.toLocaleString()}</span></div>`;
   if (monthly) totHtml += `<div class="total-row monthly"><span>Recurring monthly</span><span>$${monthly}/mo</span></div>`;
   totHtml += `<div class="total-row highlight"><span>Due today</span><span>$${dueToday.toLocaleString()}</span></div>`;
