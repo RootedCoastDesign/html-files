@@ -1244,34 +1244,55 @@ nav::after {
     min-height: auto !important;
     gap: 0 !important;
   }
-  /* Logo panel fills screen */
+  /* Logo panel fills screen — anchored from top so logo sits higher */
   .hero-visual {
     order: -1 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
+    padding-top: 10svh !important;
     min-height: calc(100svh - 66px) !important;
     width: 100% !important;
     position: relative !important;
     background: transparent !important;
   }
-  /* Scroll-down chevron */
+  /* "scroll" label above chevron */
+  .hero-visual::before {
+    content: 'scroll';
+    position: absolute;
+    bottom: 3.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(0,200,255,0.55);
+    animation: scrollLabelPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollLabelPulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+  }
+  /* Glowing double-bounce chevron */
   .hero-visual::after {
     content: '';
     position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    border-right: 2.5px solid rgba(0,200,255,0.7);
-    border-bottom: 2.5px solid rgba(0,200,255,0.7);
-    transform: translateX(-50%) rotate(45deg);
+    bottom: 1.6rem;
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 24px;
+    border-right: 2.5px solid #00C8FF;
+    border-bottom: 2.5px solid #00C8FF;
+    box-shadow: 0 0 6px rgba(0,200,255,0.5), 0 0 14px rgba(0,200,255,0.25);
     animation: mobileScrollChevron 1.5s ease-in-out infinite;
   }
   @keyframes mobileScrollChevron {
-    0%, 100% { opacity: 0.35; transform: translateX(-50%) rotate(45deg) translateY(0); }
-    50%       { opacity: 1;    transform: translateX(-50%) rotate(45deg) translateY(8px); }
+    0%   { opacity: 0.3; transform: translateY(0)   rotate(45deg); box-shadow: 0 0 4px rgba(0,200,255,0.2); }
+    50%  { opacity: 1;   transform: translateY(10px) rotate(45deg); box-shadow: 0 0 10px rgba(0,200,255,0.7), 0 0 22px rgba(0,200,255,0.35); }
+    100% { opacity: 0.3; transform: translateY(0)   rotate(45deg); box-shadow: 0 0 4px rgba(0,200,255,0.2); }
   }
   /* Hero logo sizing on mobile */
   .hero-logo-wrap {
@@ -1280,7 +1301,7 @@ nav::after {
     width: 100% !important;
   }
   .hero-logo-img {
-    width: min(280px, 78%) !important;
+    width: min(360px, 88%) !important;
   }
   /* Hero text follows below */
   .hero-text {
