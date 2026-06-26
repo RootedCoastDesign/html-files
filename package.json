@@ -1,0 +1,8 @@
+{
+  "name": "timberland-digital",
+  "version": "1.0.0",
+  "description": "Vercel serverless functions for Timberland Digital Design",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

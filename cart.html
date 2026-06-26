@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Timberland Digital Design">
+<meta property="og:title" content="Your Cart — Timberland Digital Design">
+<meta property="og:description" content="Review your selected package and submit your project request.">
+<meta property="og:url" content="https://www.timberlanddigital.com/cart.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Your Cart — Timberland Digital Design">
+<meta name="twitter:description" content="Review your selected package and submit your project request.">
+<link rel="canonical" href="https://www.timberlanddigital.com/cart.html">
+<meta name="description" content="Review your selected Timberland Digital Design package and submit your project request.">
+<title>Your Cart — Timberland Digital Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060E1A;--navy:#0A1628;--navy2:#0D1E35;
+  --amber:#00C8FF;--amber-light:#40E0FF;
+  --cream:#F5F0E8;--green:#00C87A;
+  --card:rgba(13,30,53,0.85);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',sans-serif;min-height:100vh}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:rgba(6,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,255,0.1);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:66px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);text-decoration:none}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center}
+.nav-links a{color:rgba(245,240,232,0.8);font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;transition:color .2s;text-decoration:none}
+.nav-links a:hover,.nav-links a.active{color:var(--amber-light)}
+.nav-cta-btn{background:var(--amber)!important;color:#060E1A!important;padding:.45rem 1.1rem;border-radius:4px;font-weight:700!important}
+.nav-cta-btn:hover{background:var(--amber-light)!important}
+.nav-cart-btn{display:inline-flex!important;align-items:center;gap:.38rem;border:1.5px solid rgba(0,200,255,0.35)!important;color:rgba(245,240,232,0.85)!important;padding:.32rem .85rem!important;border-radius:4px;font-size:.78rem!important;font-weight:500!important;letter-spacing:.05em!important;text-transform:uppercase!important;transition:border-color .2s,color .2s!important;}
+.nav-cart-btn:hover{border-color:var(--amber)!important;color:var(--amber)!important;}
+.nav-cart-btn svg{flex-shrink:0;}
+.cart-badge{display:inline-flex!important;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 4px;border-radius:20px;background:var(--amber);color:#060E1A;font-size:.62rem;font-weight:700;line-height:1;margin-left:.25rem;font-family:'Inter',sans-serif;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--cream);border-radius:2px}
+.mobile-nav{display:none;position:fixed;top:66px;left:0;right:0;z-index:199;background:rgba(6,14,26,0.98);padding:1.5rem 5% 2rem;border-bottom:1px solid rgba(0,200,255,0.15);flex-direction:column}
+.mobile-nav.open{display:flex}
+.mobile-nav a{color:rgba(245,240,232,0.85);font-family:'Inter',sans-serif;font-size:.9rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:.8rem 0;border-bottom:1px solid rgba(0,200,255,0.1);transition:color .2s;text-decoration:none;display:block}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a:hover{color:var(--amber-light)}
+
+/* ── PAGE ── */
+.page-wrap{max-width:680px;margin:0 auto;padding:3.5rem 5% 5rem}
+.page-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+.page-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;line-height:1.15;margin-bottom:.5rem}
+.page-title em{font-style:italic;color:var(--amber)}
+.page-sub{font-size:.93rem;color:rgba(245,240,232,0.65);line-height:1.65;margin-bottom:2.5rem}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:3rem 1rem;color:rgba(245,240,232,0.45)}
+.empty-state .icon{font-size:3rem;margin-bottom:1rem}
+.empty-state p{font-size:.9rem;margin-bottom:1.5rem}
+.empty-state a{display:inline-block;background:var(--amber);color:#060E1A;font-weight:700;font-size:.85rem;padding:.7rem 1.6rem;border-radius:4px;text-decoration:none}
+
+/* ── CART ITEMS ── */
+#cartWrap{display:none}
+.cart-items{border:1px solid rgba(0,200,255,0.12);border-radius:8px;overflow:hidden;margin-bottom:2rem}
+.cart-item{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;background:rgba(13,30,53,0.6);border-bottom:1px solid rgba(0,200,255,0.07)}
+.cart-item:last-child{border-bottom:none}
+.cart-item-name{font-size:.9rem;font-weight:600;color:var(--cream)}
+.cart-item-sub{font-size:.72rem;color:#4A7A9B;margin-top:.15rem}
+.cart-item-right{display:flex;align-items:center;gap:.75rem}
+.cart-item-price{font-family:'Playfair Display',serif;font-size:1rem;color:var(--amber);font-weight:700;white-space:nowrap}
+.cart-item-remove{background:none;border:none;color:rgba(245,240,232,0.3);cursor:pointer;font-size:.85rem;padding:.2rem .4rem;transition:color .2s}
+.cart-item-remove:hover{color:#ff6b6b}
+
+/* ── TOTALS ── */
+.cart-totals{background:rgba(13,30,53,0.6);border:1px solid rgba(0,200,255,0.12);border-radius:8px;padding:1.25rem 1.1rem;margin-bottom:2rem}
+.total-row{display:flex;justify-content:space-between;font-size:.88rem;color:rgba(245,240,232,0.65);margin-bottom:.4rem}
+.total-row.highlight{color:var(--amber);font-weight:700;font-size:1rem;padding-top:.6rem;margin-top:.4rem;border-top:1px solid rgba(0,200,255,0.1)}
+.total-row.monthly{color:#4A7A9B;font-size:.78rem}
+
+/* ── FORM ── */
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem}
+.form-group{display:flex;flex-direction:column;gap:.35rem}
+.form-group label{font-size:.78rem;font-weight:600;color:rgba(245,240,232,0.75);letter-spacing:.03em}
+.req{color:var(--amber);margin-left:.15rem}
+.form-group input,.form-group textarea{background:rgba(6,14,26,0.6);border:1.5px solid rgba(0,200,255,0.15);border-radius:6px;color:var(--cream);font-family:'Inter',sans-serif;font-size:.88rem;padding:.7rem .9rem;transition:border-color .2s;outline:none;width:100%}
+.form-group input:focus,.form-group textarea:focus{border-color:rgba(0,200,255,0.45)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-full{grid-column:1/-1}
+
+/* ── PAYMENT NOTE ── */
+.payment-note{font-size:.82rem;color:#7ab0c8;line-height:1.65;margin-bottom:1.25rem;background:rgba(0,200,255,0.05);border:1px solid rgba(0,200,255,0.1);border-radius:6px;padding:.85rem 1rem}
+.payment-note strong{color:var(--amber)}
+
+/* ── CHECKOUT ── */
+.checkout-summary{background:rgba(0,200,122,0.05);border:1px solid rgba(0,200,122,0.18);border-radius:8px;padding:1rem 1.1rem;margin-bottom:1.25rem;font-size:.83rem;color:#7ab0c8;line-height:1.65}
+.checkout-summary strong{color:#00C87A}
+.checkout-error{display:none;font-size:.82rem;color:#ff6b6b;background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.2);border-radius:6px;padding:.75rem 1rem;margin-bottom:1rem;line-height:1.6}
+.stripe-badge{display:flex;align-items:center;justify-content:center;gap:.4rem;font-size:.72rem;color:#4A7A9B;margin-top:.75rem}
+.stripe-badge svg{width:14px;height:14px;opacity:.5}
+
+/* ── SUBMIT ── */
+.btn-submit{width:100%;background:var(--amber);border:none;border-radius:6px;padding:1rem;font-size:.92rem;font-weight:700;color:#060E1A;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;letter-spacing:.05em;text-transform:uppercase}
+.btn-submit:hover{background:var(--amber-light)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed}
+
+/* ── SUCCESS ── */
+.success-state{display:none;text-align:center;padding:3rem 1rem}
+.success-state.show{display:block}
+.success-icon{font-size:3rem;display:block;margin-bottom:1rem}
+.success-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+.success-sub{font-size:.9rem;color:rgba(245,240,232,0.65);line-height:1.65}
+
+/* ── FOOTER ── */
+footer{background:#030A12;color:rgba(200,230,240,0.6);padding:52px 5% 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.foot-brand{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:.55rem}
+.foot-brand span{color:var(--amber)}
+.foot-tag{font-size:.78rem;line-height:1.65;color:rgba(200,230,240,0.5)}
+.foot-col h4{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,230,240,0.45);margin-bottom:.85rem}
+.foot-col ul{list-style:none}
+.foot-col ul li{margin-bottom:.5rem}
+.foot-col ul li a{color:rgba(200,230,240,0.6);text-decoration:none;font-size:.82rem;transition:color .2s}
+.foot-col ul li a:hover{color:var(--amber-light)}
+.foot-bottom{background:#030A12;border-top:1px solid rgba(0,200,255,0.08);padding:1rem 5%;display:flex;justify-content:space-between;font-size:.72rem;color:rgba(200,230,240,0.35)}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  footer{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Timberland <span>Digital</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="cart.html" class="nav-cart-btn active"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Cart<span class="cart-badge" id="cartBadge" style="display:none"></span></a></li>
+    <li><a href="contact.html" class="nav-cta-btn">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="services.html">Services &amp; Pricing</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="process.html">Our Process</a>
+  <a href="cart.html">🛒</a>
+  <a href="contact.html">Get a Free Quote</a>
+</nav>
+
+<div class="page-wrap">
+
+  <p class="page-eyebrow">Checkout</p>
+  <h1 class="page-title">Your <em>order.</em></h1>
+  <p class="page-sub">Review what you've selected, fill in your details, and pay to get started.</p>
+
+  <!-- Empty state -->
+  <div id="emptyState">
+    <div class="empty-state">
+      <div class="icon">🌲</div>
+      <p>Your cart is empty. Head back to services to choose a package.</p>
+      <a href="services.html">Browse Services</a>
+    </div>
+  </div>
+
+  <!-- Cart + form -->
+  <div id="cartWrap">
+
+    <!-- Items -->
+    <span class="section-label">Your Items</span>
+    <div class="cart-items" id="cartItems"></div>
+
+    <!-- Totals -->
+    <div class="cart-totals" id="cartTotals"></div>
+
+    <!-- Success -->
+    <div class="success-state" id="successState">
+      <span class="success-icon">🌲</span>
+      <div class="success-title">Order received!</div>
+      <div class="success-sub">We'll be in touch within one business day to kick things off. Check your email for confirmation.</div>
+    </div>
+
+    <!-- Form + payment -->
+    <div id="formSection">
+      <span class="section-label" style="margin-top:2rem;display:block">Your Details</span>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First name<span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label>Last name<span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="Smith">
+        </div>
+        <div class="form-group form-full">
+          <label>Business name<span class="req">*</span></label>
+          <input type="text" id="businessName" placeholder="Smith's Hardware">
+        </div>
+        <div class="form-group">
+          <label>Email<span class="req">*</span></label>
+          <input type="email" id="email" placeholder="jane@smithshardware.com">
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="phone" placeholder="(541) 555-0100">
+        </div>
+        <div class="form-group form-full">
+          <label>About your business</label>
+          <textarea id="notes" placeholder="What do you do, who are your customers, any goals for the site?"></textarea>
+        </div>
+      </div>
+
+      <span class="section-label" style="margin-top:1.5rem;display:block">Payment</span>
+      <div class="checkout-summary" id="checkoutSummary"></div>
+      <div class="checkout-error" id="checkoutError"></div>
+      <button class="btn-submit" id="btnSubmit" onclick="submitOrder()">Proceed to Secure Checkout ↗</button>
+      <div class="stripe-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;opacity:.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Powered by Stripe · SSL encrypted
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="foot-brand">Timberland <span>Digital</span></div>
+    <p class="foot-tag">Professional websites and monthly care plans for local businesses across the Pacific Northwest and beyond.</p>
+  </div>
+  <div class="foot-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="services.html#packages">Website Packages</a></li>
+      <li><a href="services.html#reskin">The Reskin</a></li>
+      <li><a href="services.html#care-plans">Care Plans</a></li>
+      <li><a href="services.html#addons">Add-Ons</a></li>
+    </ul>
+  </div>
+  <div class="foot-col">
+    <h4>Company</h4>
+    <ul>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="process.html">Our Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="foot-col">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:timberlanddigitaldesign@gmail.com">timberlanddigitaldesign@gmail.com</a></li>
+      <li style="color:rgba(245,240,232,0.6)">Bandon, Oregon</li>
+    </ul>
+  </div>
+</footer>
+<div class="foot-bottom">
+  <span>© 2026 Timberland Digital Design LLC. All rights reserved.</span>
+  <span>Privacy Policy · Terms of Service</span>
+</div>
+
+<script>
+const PRODUCTS = {
+  // deposit:true = 50% charged now, 50% invoiced at launch
+  sapling:             { name:'The Sapling',            price:497,  monthly:0,   deposit:true  },
+  timber:              { name:'The Timber',             price:997,  monthly:0,   deposit:true  },
+  oldgrowth:           { name:'The Old Growth',         price:1997, monthly:0,   deposit:true  },
+  reskin:              { name:'The Reskin',             price:197,  monthly:0,   deposit:false },
+  'care-sapling-sa':   { name:'Sapling Care Plan',      price:0,    monthly:59,  deposit:false },
+  'care-timber-sa':    { name:'Timber Care Plan',       price:0,    monthly:99,  deposit:false },
+  'care-oldgrowth-sa': { name:'Old Growth Care Plan',   price:0,    monthly:179, deposit:false },
+  copywriting:         { name:'Professional Copywriting',price:249, monthly:0,   deposit:false },
+  photos:              { name:'Stock Photo Sourcing',   price:99,   monthly:0,   deposit:false },
+  gbp:                 { name:'Google Business Profile',price:79,   monthly:0,   deposit:false },
+  booking:             { name:'Booking Integration',    price:149,  monthly:0,   deposit:false },
+  email:               { name:'Branded Email Setup',    price:129,  monthly:0,   deposit:false },
+  reviews:             { name:'Review Generation Page', price:79,   monthly:0,   deposit:false },
+  revision:            { name:'Extra Revision Round',   price:79,   monthly:0,   deposit:false },
+  'care-sapling':      { name:'Sapling Care Plan',      price:0,    monthly:59,  deposit:false },
+  'care-timber':       { name:'Timber Care Plan',       price:0,    monthly:99,  deposit:false },
+  'care-oldgrowth':    { name:'Old Growth Care Plan',   price:0,    monthly:179, deposit:false },
+};
+
+// ── Cart state ────────────────────────────────────────────────
+let cart = {};
+const params = new URLSearchParams(location.search);
+const toAdd = params.get('add');
+let stored = {};
+try { stored = JSON.parse(sessionStorage.getItem('tddCart') || '{}'); } catch(e) {}
+if (toAdd) {
+  toAdd.split(',').forEach(k => { if (PRODUCTS[k]) stored[k] = k; });
+  sessionStorage.setItem('tddCart', JSON.stringify(stored));
+}
+Object.keys(stored).forEach(k => { if (PRODUCTS[k]) cart[k] = PRODUCTS[k]; });
+
+function saveCart() {
+  const keys = {};
+  Object.keys(cart).forEach(k => keys[k] = k);
+  sessionStorage.setItem('tddCart', JSON.stringify(keys));
+}
+
+// ── Render ────────────────────────────────────────────────────
+function render() {
+  const keys = Object.keys(cart);
+  if (!keys.length) {
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('cartWrap').style.display = 'none';
+    return;
+  }
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('cartWrap').style.display = 'block';
+
+  // Items list
+  document.getElementById('cartItems').innerHTML = keys.map(k => {
+    const p = cart[k];
+    const disp = p.monthly > 0
+      ? `$${p.monthly}/mo`
+      : p.deposit
+        ? `$${Math.round(p.price * 0.5).toLocaleString()} now · $${Math.round(p.price * 0.5).toLocaleString()} at launch`
+        : `$${p.price.toLocaleString()}`;
+    const sub  = p.monthly > 0 ? 'Monthly recurring' : p.deposit ? '50/50 split payment' : 'One-time';
+    return `<div class="cart-item">
+      <div>
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-sub">${sub}</div>
+      </div>
+      <div class="cart-item-right">
+        <div class="cart-item-price">${disp}</div>
+        <button class="cart-item-remove" onclick="removeItem('${k}')" title="Remove">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Totals
+  const monthly    = keys.reduce((s,k) => s + (cart[k].monthly || 0), 0);
+  const depositAmt = keys.reduce((s,k) => cart[k].deposit ? s + Math.round(cart[k].price * 0.5) : s, 0);
+  const fullAmt    = keys.reduce((s,k) => !cart[k].deposit && cart[k].price ? s + cart[k].price : s, 0);
+  const balanceAmt = keys.reduce((s,k) => cart[k].deposit ? s + (cart[k].price - Math.round(cart[k].price * 0.5)) : s, 0);
+  const dueToday   = depositAmt + fullAmt;
+
+  let totHtml = '';
+  if (depositAmt) totHtml += `<div class="total-row"><span>Package deposit (50%)</span><span>$${depositAmt.toLocaleString()}</span></div>`;
+  if (balanceAmt) totHtml += `<div class="total-row"><span>Balance due at launch (50%)</span><span>$${balanceAmt.toLocaleString()}</span></div>`;
+  if (fullAmt)    totHtml += `<div class="total-row"><span>Add-ons &amp; extras</span><span>$${fullAmt.toLocaleString()}</span></div>`;
+  if (monthly)    totHtml += `<div class="total-row monthly"><span>Monthly recurring</span><span>$${monthly}/mo</span></div>`;
+  const dueLine = dueToday > 0 ? `$${dueToday.toLocaleString()}${monthly ? ` + $${monthly}/mo` : ''}` : `$${monthly}/mo`;
+  totHtml += `<div class="total-row highlight"><span>Due today</span><span>${dueLine}</span></div>`;
+  document.getElementById('cartTotals').innerHTML = totHtml;
+
+  // Checkout summary note
+  const summaryParts = [];
+  if (depositAmt) summaryParts.push(`<strong>$${depositAmt.toLocaleString()}</strong> deposit`);
+  if (fullAmt)    summaryParts.push(`<strong>$${fullAmt.toLocaleString()}</strong> for add-ons`);
+  if (monthly)    summaryParts.push(`<strong>$${monthly}/mo</strong> recurring`);
+  const balanceNote = balanceAmt ? ` The <strong>$${balanceAmt.toLocaleString()}</strong> balance will be invoiced when your site launches.` : '';
+  document.getElementById('checkoutSummary').innerHTML =
+    `You'll be taken to Stripe's secure checkout to pay ${summaryParts.join(' + ')}.${balanceNote}`;
+}
+
+function removeItem(k) {
+  delete cart[k];
+  saveCart();
+  // Tell services page to un-highlight this button if visible
+  try {
+    if (window.opener && window.opener.syncAllButtons) window.opener.syncAllButtons();
+  } catch(e) {}
+  render();
+  updateBadge();
+}
+
+// ── Checkout ──────────────────────────────────────────────────
+async function submitOrder() {
+  const first = document.getElementById('firstName').value.trim();
+  const last  = document.getElementById('lastName').value.trim();
+  const biz   = document.getElementById('businessName').value.trim();
+  const em    = document.getElementById('email').value.trim();
+
+  if (!first || !last || !biz || !em) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const btn = document.getElementById('btnSubmit');
+  const errEl = document.getElementById('checkoutError');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to Stripe…';
+
+  const cartKeys = Object.keys(cart);
+
+  try {
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cartKeys,
+        customerEmail: em,
+        customerName: `${first} ${last}`,
+        businessName: biz,
+        siteUrl: location.origin,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.url) {
+      throw new Error(data.error || 'Something went wrong. Please try again.');
+    }
+
+    // Clear cart on successful redirect
+    sessionStorage.removeItem('tddCart');
+    window.location.href = data.url;
+
+  } catch (err) {
+    errEl.textContent = err.message;
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Proceed to Secure Checkout ↗';
+  }
+}
+
+function updateBadge() {
+  try {
+    const stored = JSON.parse(sessionStorage.getItem('tddCart') || '{}');
+    const count = Object.keys(stored).length;
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-flex' : 'none';
+    }
+  } catch(e) {}
+}
+
+render();
+updateBadge();
+</script>
+
+</body>
+</html>
