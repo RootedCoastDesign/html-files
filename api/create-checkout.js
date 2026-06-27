@@ -10,13 +10,13 @@ const PRICE_MAP = {
   },
   timber: {
     type:           'deposit',
-    depositPriceId: 'price_1TmUE3LHhM9UWHAYKe9RCklA',
+    depositPriceId: 'price_1TmySGLHhM9UWHAYixU3zzcU',
     balancePriceId: 'price_1TmQwfLHhM9UWHAYZWyZDCd1',
     fullPrice:      1399,
   },
   oldgrowth: {
     type:           'deposit',
-    depositPriceId: 'price_1TmQygLHhM9UWHAYlNf4eTTE',
+    depositPriceId: 'price_1TmyU7LHhM9UWHAYLfYzbZMe',
     balancePriceId: 'price_1TmR3CLHhM9UWHAY2scly7EC',
     fullPrice:      2699,
   },

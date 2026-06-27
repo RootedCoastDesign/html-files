@@ -60,7 +60,7 @@ nav{
   padding:.42rem 1.1rem!important;border-radius:4px;font-weight:600!important;
 }
 .nav-cta-btn:hover{background:var(--amber-light)!important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;position:relative;overflow:visible}
 .hamburger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px}
 .mobile-nav{
   display:none;position:fixed;top:66px;left:0;right:0;z-index:199;
@@ -1489,8 +1489,9 @@ nav::after {
     <li><a href="cart.html" class="nav-cart-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Cart<span class="cart-badge" id="cartBadge" style="display:none"></span></a></li>
     <li><a href="contact.html" class="nav-cta-btn">Get a Quote</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+  <button class="hamburger" id="hamburger" onclick="toggleMobile()" style="position:relative">
     <span></span><span></span><span></span>
+    <span id="burgerBadge" style="display:none;position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:var(--amber);pointer-events:none;"></span>
   </button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
@@ -1499,7 +1500,7 @@ nav::after {
   <button onclick="toggleMobile();location.href='services.html'">Services &amp; Pricing</button>
   <button onclick="toggleMobile();location.href='portfolio.html'">Portfolio</button>
   <button onclick="toggleMobile();location.href='process.html'">Our Process</button>
-  <button onclick="toggleMobile();location.href='cart.html'">🛒 Cart</button>
+  <button onclick="toggleMobile();location.href='cart.html'" style="position:relative">🛒 Cart<span class="cart-badge" id="mobileBadge" style="display:none;position:relative;margin-left:.35rem"></span></button>
   <button onclick="toggleMobile();location.href='contact.html'">Get a Free Quote</button>
 </div>
 
@@ -1510,6 +1511,32 @@ nav::after {
   <h1>Simple, transparent pricing.<br><em>No surprises.</em></h1>
   <p>Every package includes a one-time build fee and an optional monthly Care Plan. Pick the tier that fits your business — or book a free call and we'll help you choose.</p>
 </div></div>
+
+<section id="reskin" style="background:transparent;position:relative;z-index:1;">
+  <div class="fade-up" style="text-align:center;max-width:620px;margin:0 auto 3rem;">
+    <span class="section-label">Not Ready for a Full Build?</span>
+    <h2 class="section-title">Introducing<br><em>The Reskin</em></h2>
+    <p class="section-sub">Already have a website but it's looking tired? We refresh your colors, fonts, imagery and layout — same structure, completely new look. Fast turnaround, no rebuild needed. Give your site the Timberland touch without starting from scratch.</p>
+  </div>
+  <div class="reskin-card fade-up">
+    <div class="reskin-left">
+      <div class="reskin-price"><sup>$</sup>349</div>
+      <div class="reskin-note">one-time</div>
+      <div class="reskin-care">+ Care Plan <strong>from $59/mo</strong> <em>(optional)</em></div>
+      <a href="cart.html" onclick="addToCart(event,'reskin')" data-cart-key="reskin" class="btn-reskin" style="margin-top:1.5rem;width:100%;display:block;text-align:center;text-decoration:none;">🛒 Add to Cart</a>
+    </div>
+    <div class="reskin-right">
+      <div class="reskin-feature">🎨 Full color &amp; font refresh throughout</div>
+      <div class="reskin-feature">🖼️ New imagery sourced &amp; placed</div>
+      <div class="reskin-feature">🔀 Logo swap if needed</div>
+      <div class="reskin-feature">📱 Mobile check &amp; quick fixes</div>
+      <div class="reskin-feature">✏️ Updated buttons &amp; call-to-action text</div>
+      <div class="reskin-feature">🔁 1 round of revisions</div>
+      <div class="reskin-feature">⚡ Live in 2–3 business days</div>
+    </div>
+  </div>
+</section>
+
 
 <section id="packages" style="background:transparent">
   <div class="fade-up pkg-section-header">
@@ -1631,31 +1658,6 @@ nav::after {
   </div>
 </section>
 
-
-<section id="reskin" style="background:transparent;position:relative;z-index:1;">
-  <div class="fade-up" style="text-align:center;max-width:620px;margin:0 auto 3rem;">
-    <span class="section-label">Not Ready for a Full Build?</span>
-    <h2 class="section-title">Introducing<br><em>The Reskin</em></h2>
-    <p class="section-sub">Already have a website but it's looking tired? We refresh your colors, fonts, imagery and layout — same structure, completely new look. Fast turnaround, no rebuild needed.</p>
-  </div>
-  <div class="reskin-card fade-up">
-    <div class="reskin-left">
-      <div class="reskin-price"><sup>$</sup>349</div>
-      <div class="reskin-note">one-time</div>
-      <div class="reskin-care">+ Care Plan <strong>from $59/mo</strong> <em>(optional)</em></div>
-      <a href="cart.html" onclick="addToCart(event,'reskin')" data-cart-key="reskin" class="btn-reskin" style="margin-top:1.5rem;width:100%;display:block;text-align:center;text-decoration:none;">🛒 Add to Cart</a>
-    </div>
-    <div class="reskin-right">
-      <div class="reskin-feature">🎨 Full color &amp; font refresh throughout</div>
-      <div class="reskin-feature">🖼️ New imagery sourced &amp; placed</div>
-      <div class="reskin-feature">🔀 Logo swap if needed</div>
-      <div class="reskin-feature">📱 Mobile check &amp; quick fixes</div>
-      <div class="reskin-feature">✏️ Updated buttons &amp; call-to-action text</div>
-      <div class="reskin-feature">🔁 1 round of revisions</div>
-      <div class="reskin-feature">⚡ Live in 2–3 business days</div>
-    </div>
-  </div>
-</section>
 
 <section id="care-plans" class="care-section">
   <div class="fade-up">
@@ -2059,11 +2061,7 @@ function filterPort(btn, cat) {
 
 
 <!-- Cart JS -->
-<div id="cartToast" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:999;background:#0D1E35;border:1px solid rgba(0,200,255,0.3);border-radius:8px;padding:1rem 1.4rem;box-shadow:0 8px 32px rgba(0,0,0,0.4);font-family:'Inter',sans-serif;min-width:220px;transition:opacity .3s">
-  <div style="font-size:.78rem;color:#7ab0c8;margin-bottom:.2rem">Added to cart</div>
-  <div id="toastName" style="font-size:.92rem;font-weight:600;color:#F5F0E8;margin-bottom:.75rem"></div>
-  <a href="cart.html" style="display:block;text-align:center;background:#00C8FF;color:#060E1A;font-weight:700;font-size:.78rem;padding:.5rem 1rem;border-radius:4px;text-decoration:none;letter-spacing:.04em;text-transform:uppercase">View Cart →</a>
-</div>
+
 
 <script>
 const PRODUCTS_SVC = {
@@ -2082,8 +2080,6 @@ const PRODUCTS_SVC = {
   reviews:           'Review Generation Page',
   revision:          'Extra Revision Round',
 };
-
-let toastTimer;
 
 function getCart() {
   try { return JSON.parse(sessionStorage.getItem('tddCart') || '{}'); } catch(e) { return {}; }
@@ -2117,6 +2113,8 @@ function syncAllButtons() {
   });
 }
 
+let toastTimer;
+
 function addToCart(e, key) {
   e.preventDefault();
   const cart = getCart();
@@ -2128,21 +2126,31 @@ function addToCart(e, key) {
   document.getElementById('toastName').textContent = name;
   const toast = document.getElementById('cartToast');
   toast.style.display = 'block';
-  toast.style.opacity = '1';
+  requestAnimationFrame(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  });
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
     toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-12px)';
     setTimeout(() => { toast.style.display = 'none'; }, 300);
-  }, 3000);
+  }, 3500);
 }
 
 function updateBadge() {
   const cart = getCart();
   const count = Object.keys(cart).length;
-  const badge = document.getElementById('cartBadge');
-  if (badge) {
-    if (count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
-    else { badge.style.display = 'none'; }
+  ['cartBadge','mobileBadge'].forEach(id => {
+    const badge = document.getElementById(id);
+    if (badge) {
+      if (count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
+      else { badge.style.display = 'none'; }
+    }
+  });
+  const burgerDot = document.getElementById('burgerBadge');
+  if (burgerDot) {
+    burgerDot.style.display = count > 0 ? 'block' : 'none';
   }
 }
 
@@ -2151,6 +2159,14 @@ updateBadge();
 syncAllButtons();
 </script>
 
+<div id="cartToast" style="display:none;position:fixed;top:1.5rem;right:1.5rem;z-index:9999;background:#0D1E35;border:1px solid rgba(0,200,255,0.3);border-radius:10px;padding:1rem 1.4rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);font-family:'Inter',sans-serif;min-width:230px;opacity:0;transform:translateY(-12px);transition:opacity .3s,transform .3s">
+  <div style="font-size:.75rem;color:#7ab0c8;margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.08em">Added to cart</div>
+  <div id="toastName" style="font-size:.95rem;font-weight:600;color:#F5F0E8;margin-bottom:.85rem"></div>
+  <div style="display:flex;gap:.6rem">
+    <button onclick="document.getElementById('cartToast').style.opacity='0';setTimeout(()=>document.getElementById('cartToast').style.display='none',300)" style="flex:1;padding:.45rem .75rem;border-radius:4px;border:1px solid rgba(0,200,255,0.25);background:transparent;color:#7ab0c8;font-size:.78rem;font-family:'Inter',sans-serif;cursor:pointer">Keep Shopping</button>
+    <a href="cart.html" style="flex:1;display:block;text-align:center;background:#00C87A;color:#00100A;font-weight:700;font-size:.78rem;padding:.45rem .75rem;border-radius:4px;text-decoration:none;letter-spacing:.04em">View Cart →</a>
+  </div>
+</div>
 
 </body>
 </html>
