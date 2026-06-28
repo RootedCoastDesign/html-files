@@ -357,7 +357,7 @@
 </div>
 
 <main>
-<form id="intakeForm" action="https://formspree.io/f/xjgqrwoj" method="POST" enctype="multipart/form-data">
+<form id="intakeForm" action="https://formspree.io/f/xjgqrwoj" method="POST">
 
   <!-- SECTION 1: YOUR BUSINESS -->
   <div class="section-card">
@@ -448,39 +448,24 @@
       <div class="section-icon">📸</div>
       <div>
         <h2>Photos &amp; Logo</h2>
-        <p>Upload everything here — we'll select and size what works best</p>
+        <p>Send your files directly to us after submitting this form</p>
       </div>
     </div>
     <div class="field-grid one">
 
       <div class="field">
-        <label>Your Logo <span class="optional">Optional — PNG, SVG, or AI preferred</span></label>
-        <div class="file-upload-zone" id="logoZone">
-          <input type="file" name="logo_file" accept=".png,.svg,.ai,.eps,.jpg,.jpeg,.pdf" id="logoInput" />
-          <div class="upload-icon">🖼️</div>
-          <div class="upload-label">Drop your logo file here or <span class="upload-green">browse</span></div>
-          <div class="upload-sub">PNG, SVG, AI, EPS or PDF · Max 20MB</div>
-          <div class="file-list" id="logoList"></div>
+        <div style="background:rgba(0,200,255,0.07);border:1px solid rgba(0,200,255,0.2);border-radius:8px;padding:20px 24px;">
+          <p style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#B8CED8;">📧 Email your files to us after submitting</p>
+          <p style="margin:0 0 16px;font-size:.9rem;color:#7A95A8;">Once you hit submit, send your logo and photos to:</p>
+          <p style="margin:0 0 16px;font-size:1rem;font-weight:600;color:#00C8FF;">timberlanddigitaldesign@gmail.com</p>
+          <p style="margin:0;font-size:.85rem;color:#7A95A8;">Include: your logo (PNG, SVG, or AI preferred), any team or job site photos, product shots — anything that shows what you do. No logo yet? No problem, just let us know in the notes below.</p>
         </div>
-        <p class="hint">No logo yet? No problem — we can recommend a simple text-based logo or discuss options.</p>
       </div>
 
       <div class="field">
-        <label>Photos <span class="optional">Optional but highly recommended</span></label>
-        <div class="file-upload-zone" id="photoZone">
-          <input type="file" name="photos[]" accept="image/*" multiple id="photoInput" />
-          <div class="upload-icon">📷</div>
-          <div class="upload-label">Drop photos here or <span class="upload-green">browse</span></div>
-          <div class="upload-sub">JPG, PNG, HEIC · Up to 10 files · Max 20MB each</div>
-          <div class="file-list" id="photoList"></div>
-        </div>
-        <p class="hint">Team photos, job site photos, product shots, storefront — anything that shows what you do. Don't overthink it.</p>
-      </div>
-
-      <div class="field">
-        <label>No photos yet? Share a link instead <span class="optional">Optional</span></label>
-        <input type="url" name="photo_link" placeholder="Google Drive, Dropbox, or iCloud share link…" />
-        <p class="hint">If your photos are already in the cloud, just paste a share link above instead of uploading.</p>
+        <label>Share a link instead <span class="optional">Optional — Google Drive, Dropbox, iCloud</span></label>
+        <input type="url" name="photo_link" placeholder="Paste a share link to your files…" />
+        <p class="hint">If your files are already in the cloud, paste a share link here and we'll grab them.</p>
       </div>
 
     </div>
@@ -655,38 +640,6 @@
     updateProgress();
   }
 
-  // ── FILE UPLOAD DISPLAY ──
-  function setupFileZone(inputId, listId) {
-    const input = document.getElementById(inputId);
-    const list  = document.getElementById(listId);
-    if (!input || !list) return;
-
-    input.addEventListener('change', () => {
-      const files = Array.from(input.files);
-      if (!files.length) { list.style.display = 'none'; return; }
-      list.style.display = 'block';
-      list.innerHTML = files.map(f =>
-        `<div class="file-item">✅ ${f.name} <span style="color:var(--muted)">(${(f.size/1024/1024).toFixed(1)} MB)</span></div>`
-      ).join('');
-      updateProgress();
-    });
-
-    // drag-and-drop
-    const zone = input.closest('.file-upload-zone');
-    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
-    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-    zone.addEventListener('drop', e => {
-      e.preventDefault(); zone.classList.remove('dragover');
-      const dt = e.dataTransfer;
-      if (dt.files.length) {
-        input.files = dt.files;
-        input.dispatchEvent(new Event('change'));
-      }
-    });
-  }
-
-  setupFileZone('logoInput', 'logoList');
-  setupFileZone('photoInput', 'photoList');
 
   // ── PROGRESS BAR ──
   function updateProgress() {
