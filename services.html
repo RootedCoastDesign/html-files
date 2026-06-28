@@ -451,20 +451,7 @@ footer{
 .packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;margin-top:3.5rem;align-items:start}
 .pkg-card{background:#0D1E30;border-radius:8px;padding:2.25rem 1.85rem;border:1.5px solid rgba(0,200,255,0.15);position:relative;transition:transform .2s,box-shadow .2s}
 .pkg-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.2)}
-.pkg-card.tier-sapling{background:#090F18;border-color:rgba(90,150,180,0.35);opacity:0.88;box-shadow:0 4px 20px rgba(0,160,210,0.08)}
-.pkg-card.tier-sapling:hover{opacity:1;box-shadow:0 12px 36px rgba(0,160,210,0.18);border-color:rgba(90,150,180,0.55)}
-.pkg-card.tier-sapling .pkg-tier{color:#4A6878}
-.pkg-card.tier-sapling .pkg-name{color:#7A9AAB}
-.pkg-card.tier-sapling .pkg-price{color:#5A8A9A}
-.pkg-card.tier-sapling .pkg-price sup{color:#5A8A9A}
-.pkg-card.tier-sapling .pkg-features li{color:#4A6878}
-.pkg-card.tier-sapling .pkg-features li::before{color:#3A5868}
-.pkg-card.tier-sapling .pkg-div{background:rgba(70,95,115,0.15)}
-.pkg-card.tier-sapling .pkg-tag{color:#3A5868}
-.pkg-card.tier-sapling .pkg-mo{color:#3A5868}
-.pkg-card.tier-sapling .pkg-care-pill{color:#3A5868;border-color:rgba(70,95,115,0.2)}
-.pkg-card.tier-sapling .pkg-care-pill strong{color:#4A7888}
-.pkg-card.tier-sapling .pkg-touch-link{color:#3A5868}
+.val-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--amber);color:#060E1A;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.26rem .9rem;border-radius:20px;white-space:nowrap}
 .pkg-card.featured{border-color:#00C87A;box-shadow:0 8px 36px rgba(0,200,122,0.2);background:linear-gradient(145deg,#081A10 0%,#0C2418 100%)}
 .pkg-card.featured:hover{box-shadow:0 20px 56px rgba(0,200,122,0.3)}
 .pkg-card.featured .pkg-tier{color:#00C87A}
@@ -1086,16 +1073,9 @@ nav { z-index: 300 !important; }
 }
 .care-card:hover { transform: translateY(-4px); }
 
-/* Sapling care — muted entry level */
-.care-card.care-sapling { background: #090F18; border: 1.5px solid rgba(70,95,115,0.22); opacity: 0.88; box-shadow: 0 4px 20px rgba(0,160,210,0.08); }
-.care-card.care-sapling:hover { opacity: 1; box-shadow: 0 12px 36px rgba(0,160,210,0.18); border-color: rgba(90,150,180,0.55); }
-.care-card.care-sapling .care-card-name { color: #7A9AAB; }
-.care-card.care-sapling .care-card-price { color: #5A8A9A; }
-.care-card.care-sapling .care-card-price span { color: #3A5868; }
-.care-card.care-sapling .care-card-list li.ck { color: #4A6878; }
-.care-card.care-sapling .care-card-list li.ck::before { color: #3A5868; }
-.care-card.care-sapling .care-card-list li.no { color: #2A3A48; }
-.care-card.care-sapling .care-card-list li { border-bottom-color: rgba(70,95,115,0.1); }
+/* Sapling care — full visibility */
+.care-card.care-sapling { background: rgba(10,22,40,0.90); border: 1.5px solid rgba(0,200,255,0.18); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+.care-card.care-sapling:hover { box-shadow: 0 12px 40px rgba(0,200,255,0.12); border-color: rgba(0,200,255,0.35); }
 
 /* Timber care — green featured */
 .care-card.care-card-featured { border: 1.5px solid #00C87A; background: linear-gradient(145deg,#081A10 0%,#0C2418 100%); box-shadow: 0 8px 36px rgba(0,200,122,0.2); }
@@ -1146,7 +1126,7 @@ nav { z-index: 300 !important; }
 
 /* Package cards */
 .pkg-card { background: rgba(10,22,40,0.90) !important; border: 1px solid rgba(0,200,255,0.15) !important; }
-.pkg-card.tier-sapling { background: #090F18 !important; border-color: rgba(70,95,115,0.22) !important; }
+/* Sapling styled like base card */
 .pkg-card.featured { background: linear-gradient(145deg,#081A10,#0C2418) !important; border-color: #00C87A !important; }
 .pkg-card.tier-gold { background: linear-gradient(145deg,#140E00,#1E1600,#140E00) !important; border-color: rgba(212,175,55,0.45) !important; }
 .pkg-name { color: #C8DCE4 !important; }
@@ -1556,6 +1536,7 @@ nav::after {
 
     <!-- SAPLING -->
     <div class="pkg-card tier-sapling fade-up">
+      <div class="val-badge">Best Value</div>
       <div class="pkg-header">
         <div>
           <div class="pkg-tier">Tier 1</div>
@@ -1581,7 +1562,7 @@ nav::after {
         <li>Domain connection + go-live</li>
       </ul>
       <div class="pkg-footer">
-        <a href="cart.html" onclick="addToCart(event,'sapling')" data-cart-key="sapling" class="pkg-btn pkg-btn-o" style="display:block;text-align:center;text-decoration:none;">Add to Cart</a>
+        <a href="cart.html" onclick="addToCart(event,'sapling')" data-cart-key="sapling" class="pkg-btn pkg-btn-f" style="display:block;text-align:center;text-decoration:none;">Add to Cart</a>
         <a href="contact.html#contactForm" class="pkg-touch-link">Questions first? Let's talk →</a>
       </div>
     </div>
@@ -1682,6 +1663,7 @@ nav::after {
   <div class="care-cards fade-up">
 
     <div class="care-card care-sapling">
+      <div class="val-badge">Best Value</div>
       <div class="care-card-header">
         <div class="care-card-name">Sapling</div>
         <div class="care-card-price" id="price-sapling">$59<span>/mo</span></div>
@@ -1702,7 +1684,7 @@ nav::after {
         <li class="no">Annual homepage refresh</li>
       </ul>
       <div class="care-billing-note" id="note-sapling"></div>
-      <a href="cart.html" id="btn-sapling" data-care-tier="sapling" onclick="addCareToCart(event,'sapling')" class="pkg-btn pkg-btn-o" style="display:block;text-align:center;text-decoration:none;border-color:rgba(70,95,115,0.4) !important;color:#5A8A9A !important;">🛒 Add to Cart</a>
+      <a href="cart.html" id="btn-sapling" data-care-tier="sapling" onclick="addCareToCart(event,'sapling')" class="pkg-btn pkg-btn-f" style="display:block;text-align:center;text-decoration:none;">🛒 Add to Cart</a>
     </div>
 
     <div class="care-card care-card-featured">
@@ -2227,7 +2209,7 @@ function addToCart(e, key) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => {
     toast.style.opacity = '0';
-    toast.style.transform = 'translateY(-12px)';
+    toast.style.transform = 'translateY(12px)';
     setTimeout(() => { toast.style.display = 'none'; }, 300);
   }, 3500);
 }
@@ -2253,12 +2235,26 @@ updateBadge();
 syncAllButtons();
 </script>
 
-<div id="cartToast" style="display:none;position:fixed;top:1.5rem;right:1.5rem;z-index:9999;background:#0D1E35;border:1px solid rgba(0,200,255,0.3);border-radius:10px;padding:1rem 1.4rem;box-shadow:0 8px 32px rgba(0,0,0,0.5);font-family:'Inter',sans-serif;min-width:230px;opacity:0;transform:translateY(-12px);transition:opacity .3s,transform .3s">
-  <div style="font-size:.75rem;color:#7ab0c8;margin-bottom:.2rem;text-transform:uppercase;letter-spacing:.08em">Added to cart</div>
-  <div id="toastName" style="font-size:.95rem;font-weight:600;color:#F5F0E8;margin-bottom:.85rem"></div>
-  <div style="display:flex;gap:.6rem">
-    <button onclick="document.getElementById('cartToast').style.opacity='0';setTimeout(()=>document.getElementById('cartToast').style.display='none',300)" style="flex:1;padding:.45rem .75rem;border-radius:4px;border:1px solid rgba(0,200,255,0.25);background:transparent;color:#7ab0c8;font-size:.78rem;font-family:'Inter',sans-serif;cursor:pointer">Keep Shopping</button>
-    <a href="cart.html" style="flex:1;display:block;text-align:center;background:#00C87A;color:#00100A;font-weight:700;font-size:.78rem;padding:.45rem .75rem;border-radius:4px;text-decoration:none;letter-spacing:.04em">View Cart →</a>
+<style>
+#cartToast{display:none;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;font-family:'Inter',sans-serif;min-width:260px;max-width:320px;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s}
+.toast-inner{background:linear-gradient(135deg,#0D1E35 0%,#0A1628 100%);border:1px solid rgba(0,200,255,0.25);border-radius:12px;padding:1.1rem 1.25rem;box-shadow:0 12px 40px rgba(0,0,0,0.6),0 0 0 1px rgba(0,200,255,0.05) inset}
+.toast-label{font-size:.68rem;color:#00C8FF;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.toast-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#00C8FF;box-shadow:0 0 6px #00C8FF}
+.toast-name{font-size:.95rem;font-weight:600;color:#E8F4F8;margin-bottom:1rem;line-height:1.3}
+.toast-actions{display:flex;gap:.5rem}
+.toast-keep{flex:1;padding:.48rem .7rem;border-radius:6px;border:1px solid rgba(0,200,255,0.2);background:transparent;color:#90B8C8;font-size:.78rem;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color .2s,color .2s}
+.toast-keep:hover{border-color:rgba(0,200,255,0.45);color:#C8E4F0}
+.toast-view{flex:1.4;display:block;text-align:center;background:var(--amber);color:#060E1A;font-weight:700;font-size:.78rem;padding:.48rem .7rem;border-radius:6px;text-decoration:none;letter-spacing:.04em;transition:background .2s}
+.toast-view:hover{background:var(--amber-light)}
+</style>
+<div id="cartToast">
+  <div class="toast-inner">
+    <div class="toast-label">Added to cart</div>
+    <div id="toastName" class="toast-name"></div>
+    <div class="toast-actions">
+      <button class="toast-keep" onclick="const t=document.getElementById('cartToast');t.style.opacity='0';t.style.transform='translateY(12px)';setTimeout(()=>t.style.display='none',300)">Keep Shopping</button>
+      <a href="cart.html" class="toast-view">View Cart →</a>
+    </div>
   </div>
 </div>
 
