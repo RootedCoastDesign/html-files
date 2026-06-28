@@ -1039,11 +1039,11 @@ nav::after {
   background: transparent !important;
   mix-blend-mode: normal;
   -webkit-print-color-adjust: exact;
-  filter: contrast(0.92) brightness(1.05);
+  filter: drop-shadow(0 0 5px rgba(0,200,255,0.8)) drop-shadow(0 0 16px rgba(0,200,255,0.35)) contrast(0.92) brightness(1.08);
   transition: filter .3s;
 }
 .hero-logo-img:hover {
-  filter: contrast(0.92) brightness(1.05);
+  filter: drop-shadow(0 0 8px rgba(0,200,255,1)) drop-shadow(0 0 22px rgba(0,200,255,0.5)) contrast(0.92) brightness(1.12);
 }
 @keyframes logoFloat {
   0%, 100% { transform: translateY(0px); }
