@@ -2140,11 +2140,11 @@ function addCareToCart(e, tier) {
 }
 
 function getCart() {
-  try { return JSON.parse(sessionStorage.getItem('tddCart') || '{}'); } catch(e) { return {}; }
+  try { return JSON.parse(sessionStorage.getItem('rcdCart') || '{}'); } catch(e) { return {}; }
 }
 
 function saveCart(cart) {
-  sessionStorage.setItem('tddCart', JSON.stringify(cart));
+  sessionStorage.setItem('rcdCart', JSON.stringify(cart));
 }
 
 function setButtonAdded(btn) {
