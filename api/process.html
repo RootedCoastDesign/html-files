@@ -1526,7 +1526,7 @@ function submitForm() {
 <script>
 (function updateCartBadge() {
   try {
-    const stored = JSON.parse(sessionStorage.getItem('tddCart') || '{}');
+    const stored = JSON.parse(sessionStorage.getItem('rcdCart') || '{}');
     const count = Object.keys(stored).length;
     const badge = document.getElementById('cartBadge');
     if (badge) {
