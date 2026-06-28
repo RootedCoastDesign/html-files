@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Intake Form — Rooted Coast Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #060E1A;
+      --card:      #0D1B2E;
+      --card2:     #0A1526;
+      --border:    #1E3A5F;
+      --border2:   #2A4F7C;
+      --text:      #E8F0FA;
+      --muted:     #7A9AB8;
+      --green:     #4ADE80;
+      --green-dim: #22C55E;
+      --green-bg:  rgba(74,222,128,0.08);
+      --red:       #F87171;
+      --input-bg:  #071020;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--card2);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, #1E3A5F, #0D1B2E);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .brand-name { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .brand-sub  { font-size: 12px; color: var(--muted); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(180deg, #0D1B2E 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--green-bg);
+      border: 1px solid rgba(74,222,128,0.3);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .hero h1 em { color: var(--green); font-style: italic; }
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* ── SECTION CARDS ── */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 40px; height: 40px;
+      background: var(--green-bg);
+      border: 1px solid rgba(74,222,128,0.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 18px; font-weight: 700; }
+    .section-header p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FIELDS ── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field-grid.one { grid-template-columns: 1fr; }
+    @media (max-width: 540px) { .field-grid { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.span2 { grid-column: 1 / -1; }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .required { color: var(--green); font-size: 11px; }
+    .optional  { color: var(--muted); font-size: 11px; font-weight: 400; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    select,
+    textarea {
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 11px 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green-dim);
+      box-shadow: 0 0 0 3px rgba(74,222,128,0.1);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A9AB8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    select option { background: #0D1B2E; }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    /* ── FILE UPLOAD ── */
+    .file-upload-zone {
+      border: 2px dashed var(--border2);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      background: var(--input-bg);
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .file-upload-zone:hover,
+    .file-upload-zone.dragover {
+      border-color: var(--green-dim);
+      background: var(--green-bg);
+    }
+    .file-upload-zone input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+    }
+    .upload-icon { font-size: 32px; margin-bottom: 10px; }
+    .upload-label { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .upload-sub   { font-size: 12px; color: var(--muted); }
+    .upload-green { color: var(--green); text-decoration: underline; cursor: pointer; }
+    .file-list    { margin-top: 12px; font-size: 13px; color: var(--green); text-align: left; display: none; }
+    .file-item    { padding: 4px 0; display: flex; align-items: center; gap: 6px; }
+
+    /* ── CHECKBOXES ── */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+      font-size: 13px;
+    }
+    .checkbox-item:hover { border-color: var(--border2); }
+    .checkbox-item input[type="checkbox"] { display: none; }
+    .checkbox-item.checked {
+      border-color: var(--green-dim);
+      background: var(--green-bg);
+      color: var(--green);
+    }
+    .check-box {
+      width: 18px; height: 18px;
+      border: 1.5px solid var(--border2);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+    .checkbox-item.checked .check-box {
+      background: var(--green-dim);
+      border-color: var(--green-dim);
+      color: #000;
+    }
+
+    /* ── HINT TEXT ── */
+    .hint { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+    /* ── DIVIDER ── */
+    .field-divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 4px 0;
+    }
+
+    /* ── SUBMIT ── */
+    .submit-section { text-align: center; padding-top: 12px; }
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-dim);
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .submit-btn:hover { background: var(--green); transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+    /* ── SUCCESS STATE ── */
+    #success-screen {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    #success-screen .success-icon { font-size: 56px; margin-bottom: 20px; }
+    #success-screen h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+    #success-screen h2 em { color: var(--green); font-style: italic; }
+    #success-screen p { color: var(--muted); font-size: 15px; max-width: 440px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--card2);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+    }
+    .progress-track {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .progress-label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .progress-outer {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .progress-inner {
+      height: 100%;
+      background: var(--green-dim);
+      border-radius: 100px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+    .progress-pct { font-size: 12px; color: var(--green); font-weight: 600; white-space: nowrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">🌲</div>
+  <div>
+    <div class="brand-name">Rooted Coast Design</div>
+    <div class="brand-sub">Client Onboarding</div>
+  </div>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-track">
+    <span class="progress-label">Form progress</span>
+    <div class="progress-outer"><div class="progress-inner" id="progressBar"></div></div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">🌲 New Client Intake</div>
+  <h1>Let's build something<br /><em>great together.</em></h1>
+  <p>Fill this out at your own pace — it takes about 10–15 minutes. The more detail you share, the better your site will turn out.</p>
+</div>
+
+<main>
+<form id="intakeForm" action="https://formspree.io/f/xjgqrwoj" method="POST">
+
+  <!-- SECTION 1: YOUR BUSINESS -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div>
+        <h2>Your Business</h2>
+        <p>Basic info so we know who we're building for</p>
+      </div>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Business Name <span class="required">Required</span></label>
+        <input type="text" name="business_name" placeholder="e.g. Coast Plumbing Co." required />
+      </div>
+      <div class="field">
+        <label>Your Name <span class="required">Required</span></label>
+        <input type="text" name="your_name" placeholder="First and last name" required />
+      </div>
+      <div class="field">
+        <label>Email Address <span class="required">Required</span></label>
+        <input type="email" name="email" placeholder="you@yourbusiness.com" required />
+      </div>
+      <div class="field">
+        <label>Phone Number <span class="optional">Optional</span></label>
+        <input type="tel" name="phone" placeholder="(541) 555-0100" />
+      </div>
+      <div class="field span2">
+        <label>Business Address / Location <span class="optional">Optional</span></label>
+        <input type="text" name="location" placeholder="City, State — or full address if you want it on your site" />
+      </div>
+      <div class="field span2">
+        <label>Type of Business <span class="required">Required</span></label>
+        <select name="business_type" required>
+          <option value="" disabled selected>Select your industry…</option>
+          <option>Home Services (plumbing, HVAC, roofing…)</option>
+          <option>Salon, Spa &amp; Beauty</option>
+          <option>Consultant or Coach</option>
+          <option>Restaurant or Food Business</option>
+          <option>Real Estate Agent</option>
+          <option>Health &amp; Wellness</option>
+          <option>Landscaping or Cleaning</option>
+          <option>Photography or Events</option>
+          <option>Retail or E-commerce</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WEBSITE CONTENT -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">✍️</div>
+      <div>
+        <h2>Website Content</h2>
+        <p>This becomes the actual words on your site — don't worry about making it perfect</p>
+      </div>
+    </div>
+    <div class="field-grid one">
+      <div class="field">
+        <label>Tell us about your business <span class="required">Required</span></label>
+        <textarea name="about" rows="5" placeholder="What do you do? How long have you been doing it? What makes you different from competitors? This goes in your 'About' section." required></textarea>
+        <p class="hint">Write naturally — we'll clean it up. A few sentences is fine, more is better.</p>
+      </div>
+      <div class="field">
+        <label>Your Services or Products <span class="required">Required</span></label>
+        <textarea name="services" rows="5" placeholder="List your main services or products. Include any pricing if you'd like it on the site.&#10;&#10;Example:&#10;– Drain cleaning: $99&#10;– Water heater install: starting at $600&#10;– Emergency service: 24/7" required></textarea>
+      </div>
+      <div class="field">
+        <label>Business Hours <span class="optional">Optional</span></label>
+        <textarea name="hours" rows="3" placeholder="e.g.&#10;Mon–Fri: 8am–5pm&#10;Saturday: By appointment&#10;Sunday: Closed"></textarea>
+      </div>
+      <div class="field">
+        <label>Tagline or Slogan <span class="optional">Optional</span></label>
+        <input type="text" name="tagline" placeholder="e.g. "Serving the Oregon Coast since 2005" — or leave blank and we'll suggest one" />
+      </div>
+      <div class="field">
+        <label>Anything else for the homepage? <span class="optional">Optional</span></label>
+        <textarea name="homepage_notes" rows="3" placeholder="Announcements, seasonal offers, awards, certifications, or anything you want front and center…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: PHOTOS & LOGO -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">📸</div>
+      <div>
+        <h2>Photos &amp; Logo</h2>
+        <p>Send your files directly to us after submitting this form</p>
+      </div>
+    </div>
+    <div class="field-grid one">
+
+      <div class="field">
+        <div style="background:rgba(0,200,255,0.07);border:1px solid rgba(0,200,255,0.2);border-radius:8px;padding:20px 24px;">
+          <p style="margin:0 0 8px;font-size:1rem;font-weight:600;color:#B8CED8;">📧 Email your files to us after submitting</p>
+          <p style="margin:0 0 16px;font-size:.9rem;color:#7A95A8;">Once you hit submit, send your logo and photos to:</p>
+          <div onclick="navigator.clipboard.writeText('hello@rootedcoastdesign.com').then(()=>{this.querySelector('.copy-label').textContent='Copied!';setTimeout(()=>this.querySelector('.copy-label').textContent='Copy',1800)})" style="display:flex;align-items:center;justify-content:space-between;background:rgba(0,200,255,0.06);border:1px solid rgba(0,200,255,0.25);border-radius:6px;padding:10px 14px;margin-bottom:16px;cursor:pointer;user-select:none;gap:12px;">
+            <span style="font-size:.95rem;font-weight:600;color:#00C8FF;word-break:break-all;">hello@rootedcoastdesign.com</span>
+            <span class="copy-label" style="font-size:.75rem;font-weight:600;color:#00C8FF;white-space:nowrap;opacity:.7;flex-shrink:0;">Copy</span>
+          </div>
+          <p style="margin:0;font-size:.85rem;color:#7A95A8;">Include: your logo (PNG, SVG, or AI preferred), any team or job site photos, product shots — anything that shows what you do. No logo yet? No problem, just let us know in the notes below.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Share a link instead <span class="optional">Optional — Google Drive, Dropbox, iCloud</span></label>
+        <input type="url" name="photo_link" placeholder="Paste a share link to your files…" />
+        <p class="hint">If your files are already in the cloud, paste a share link here and we'll grab them.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: STYLE & VIBE -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div>
+        <h2>Style &amp; Vibe</h2>
+        <p>Help us nail the look and feel on the first try</p>
+      </div>
+    </div>
+    <div class="field-grid one">
+
+      <div class="field">
+        <label>What feeling should your site give off? <span class="optional">Pick all that apply</span></label>
+        <div class="checkbox-grid" id="vibeGrid">
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Professional" />
+            <div class="check-box">✓</div> Professional
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Friendly & Approachable" />
+            <div class="check-box">✓</div> Friendly
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Bold & Confident" />
+            <div class="check-box">✓</div> Bold
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Clean & Minimal" />
+            <div class="check-box">✓</div> Minimal
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Warm & Rustic" />
+            <div class="check-box">✓</div> Warm / Rustic
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Modern & Sleek" />
+            <div class="check-box">✓</div> Modern
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Luxury / High-End" />
+            <div class="check-box">✓</div> Luxury
+          </label>
+          <label class="checkbox-item" onclick="toggleCheck(event, this)">
+            <input type="checkbox" name="vibe[]" value="Fun & Playful" />
+            <div class="check-box">✓</div> Fun / Playful
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Brand Colors <span class="optional">Optional</span></label>
+        <input type="text" name="brand_colors" placeholder="e.g. Navy blue and gold, or just describe it — 'earthy greens and browns'" />
+      </div>
+
+      <div class="field">
+        <label>Websites you like the look of <span class="optional">Optional</span></label>
+        <textarea name="example_sites" rows="3" placeholder="Paste links to 1–3 websites (doesn't have to be in your industry) that you like the look of. Tell us what you like about them."></textarea>
+        <p class="hint">Doesn't need to be a competitor — could be any site that has a look you like.</p>
+      </div>
+
+      <div class="field">
+        <label>Websites you DON'T want to look like <span class="optional">Optional</span></label>
+        <input type="text" name="avoid_styles" placeholder="e.g. 'Nothing too dark and busy' or 'avoid anything that feels cheap'" />
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 5: SOCIAL MEDIA & LINKS -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">🔗</div>
+      <div>
+        <h2>Social Media &amp; Links</h2>
+        <p>We'll add these to your site's footer and contact page</p>
+      </div>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Facebook <span class="optional">Optional</span></label>
+        <input type="url" name="facebook" placeholder="https://facebook.com/yourbusiness" />
+      </div>
+      <div class="field">
+        <label>Instagram <span class="optional">Optional</span></label>
+        <input type="url" name="instagram" placeholder="https://instagram.com/yourbusiness" />
+      </div>
+      <div class="field">
+        <label>Google Business Profile <span class="optional">Optional</span></label>
+        <input type="url" name="google_business" placeholder="Link to your Google listing" />
+      </div>
+      <div class="field">
+        <label>Yelp <span class="optional">Optional</span></label>
+        <input type="url" name="yelp" placeholder="https://yelp.com/biz/yourbusiness" />
+      </div>
+      <div class="field span2">
+        <label>Other Links <span class="optional">Optional</span></label>
+        <input type="text" name="other_links" placeholder="LinkedIn, TikTok, YouTube, online booking link, anything else…" />
+      </div>
+      <div class="field span2">
+        <label>Existing Website <span class="optional">Optional — only if you have one</span></label>
+        <input type="url" name="existing_site" placeholder="https://youroldsite.com — we'll use this as a reference" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: FINAL NOTES -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div>
+        <h2>Anything Else?</h2>
+        <p>Last chance to share anything we should know</p>
+      </div>
+    </div>
+    <div class="field-grid one">
+      <div class="field">
+        <label>Additional notes, questions, or requests <span class="optional">Optional</span></label>
+        <textarea name="notes" rows="4" placeholder="Special features you need, things to avoid, questions about the process, a deadline, anything at all…"></textarea>
+      </div>
+      <div class="field">
+        <label>How did you hear about us? <span class="optional">Optional</span></label>
+        <select name="referral">
+          <option value="" disabled selected>Select one…</option>
+          <option>Google search</option>
+          <option>Facebook / Instagram</option>
+          <option>Word of mouth / referral</option>
+          <option>Saw a site you built</option>
+          <option>Flyer or local ad</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIDDEN FORMSPREE REDIRECT -->
+  <input type="hidden" name="_subject" value="New Client Intake Form Submission" />
+  <input type="hidden" name="_next" value="" id="successRedirect" />
+
+  <!-- SUBMIT -->
+  <div class="submit-section">
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Send My Info to Rooted Coast →
+    </button>
+    <p class="submit-note">Your info goes directly to Johnathon at Rooted Coast Design. We'll be in touch within one business day.</p>
+  </div>
+
+</form>
+
+  <!-- SUCCESS SCREEN -->
+  <div id="success-screen">
+    <div class="success-icon">🌲</div>
+    <h2>You're all set — <em>let's build!</em></h2>
+    <p>We've received your intake form and we'll be in touch within one business day to get the build started. Don't forget to email your logo and photos to <a href="mailto:hello@rootedcoastdesign.com" style="color:var(--green);">hello@rootedcoastdesign.com</a>.</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 <a href="https://www.rootedcoastdesign.com" target="_blank">Rooted Coast Design LLC</a> · Bandon, Oregon · <a href="mailto:hello@rootedcoastdesign.com">hello@rootedcoastdesign.com</a></p>
+</footer>
+
+<script>
+  // ── CHECKBOX TOGGLE ──
+  function toggleCheck(e, el) {
+    e.preventDefault();
+    el.classList.toggle('checked');
+    el.querySelector('input[type="checkbox"]').checked = el.classList.contains('checked');
+    updateProgress();
+  }
+
+
+  // ── PROGRESS BAR ──
+  function updateProgress() {
+    const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+    let filled = 0;
+    requiredInputs.forEach(el => {
+      if (el.value.trim()) filled++;
+    });
+    const pct = Math.round((filled / requiredInputs.length) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', updateProgress);
+    el.addEventListener('change', updateProgress);
+  });
+  updateProgress();
+
+  // ── SUBMIT ──
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
+    // Validate required fields
+    const required = document.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      el.style.borderColor = '';
+      if (!el.value.trim()) {
+        el.style.borderColor = 'var(--red)';
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      e.preventDefault();
+      const first = document.querySelector('[style*="var(--red)"]');
+      if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Show loading state on button
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Show success screen after Formspree posts (it redirects back to same page by default)
+    // We intercept with fetch instead so we can show our own success UI
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('https://formspree.io/f/xjgqrwoj', {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        showSuccess();
+      } else {
+        btn.textContent = 'Send My Info to Rooted Coast →';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email us directly at hello@rootedcoastdesign.com');
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Send My Info to Rooted Coast →';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or email us directly at hello@rootedcoastdesign.com');
+    });
+  });
+
+  function showSuccess() {
+    document.getElementById('intakeForm').style.display = 'none';
+    document.querySelector('.hero').style.display = 'none';
+    document.getElementById('success-screen').style.display = 'block';
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('progressPct').textContent = '100%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

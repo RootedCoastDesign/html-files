@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order Confirmed — Rooted Coast Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#00100A;color:#F5F0E8;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+.card{max-width:520px;width:100%;background:rgba(10,22,40,0.90);border:1px solid rgba(0,200,122,0.25);border-radius:12px;padding:3rem 2.5rem;text-align:center}
+.icon{font-size:3.5rem;margin-bottom:1.25rem;display:block}
+h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#D8E8EE;margin-bottom:.65rem}
+h1 em{font-style:italic;color:#00C87A}
+p{font-size:.93rem;color:rgba(245,240,232,0.65);line-height:1.75;margin-bottom:1.5rem}
+.details{background:rgba(0,200,122,0.05);border:1px solid rgba(0,200,122,0.15);border-radius:8px;padding:1rem 1.2rem;font-size:.83rem;color:#7ab0c8;line-height:1.7;margin-bottom:2rem;text-align:left}
+.details strong{color:#00C87A}
+.btn{display:inline-block;background:#00C87A;color:#00100A;font-weight:700;font-size:.88rem;padding:.8rem 2rem;border-radius:6px;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:background .2s}
+.btn:hover{background:#40FFB0}
+.logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:rgba(245,240,232,0.4);margin-top:2rem}
+.logo span{color:#00C87A}
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="icon">🌲</span>
+  <h1>Order <em>confirmed!</em></h1>
+  <p>Your payment was successful. We're excited to get started on your project and will be in touch within one business day.</p>
+  <div class="details">
+    <strong>What happens next:</strong><br>
+    1. Check your email for a Stripe receipt<br>
+    2. We'll reach out within 1 business day to schedule a kickoff<br>
+    3. You'll receive a project intake form to share your goals &amp; assets
+  </div>
+  <a href="index.html" class="btn">Back to Home</a>
+</div>
+<div class="logo">Rooted <span>Coast</span> Design</div>
+<script>
+  // Clear cart on successful payment
+  sessionStorage.removeItem('rcdCart');
+</script>
+</body>
+</html>
