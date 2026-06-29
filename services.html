@@ -1467,6 +1467,25 @@ nav::after {
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Rooted Coast">
 <meta name="theme-color" content="#060E1A">
+<style>
+/* Mobile menu: full-screen, centered */
+.hamburger{z-index:2000!important}
+.mobile-nav{
+  position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;
+  width:100%!important;height:100%!important;
+  display:none;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  gap:1.4rem!important;padding:2rem!important;
+  z-index:1500!important;
+}
+.mobile-nav.open{display:flex!important}
+.mobile-nav a,.mobile-nav button{
+  text-align:center!important;width:auto!important;max-width:90%!important;
+  border-bottom:none!important;font-size:1.15rem!important;
+  padding:.5rem 0!important;
+}
+body.nav-open{overflow:hidden!important}
+</style>
 </head>
 <body>
 
@@ -1872,6 +1891,7 @@ nav::after {
 <script>
 function toggleMobile() {
   document.getElementById('mobileNav').classList.toggle('open');
+  document.body.classList.toggle('nav-open');
 }
 function filterPort(btn, cat) {
   document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
