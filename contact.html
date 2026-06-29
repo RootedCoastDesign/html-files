@@ -1539,7 +1539,7 @@ async function submitForm() {
   });
 
   try {
-    const res = await fetch('https://formspree.io/f/mkoloede', {
+    const res = await fetch('https://formspree.io/f/mpqgloyb', {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
@@ -1783,11 +1783,22 @@ function applyPromo() {
 
 
 <script>
-(function updateCartBadge() {
+function updateCartBadge() {
   try {
     const stored = JSON.parse(sessionStorage.getItem('rcdCart') || '{}');
     const count = Object.keys(stored).length;
     const badge = document.getElementById('cartBadge');
     if (badge) {
       if (count > 0) {
-        badge.t
+        badge.textContent = count;
+        badge.style.display = 'inline-flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+  } catch(e) {}
+}
+updateCartBadge();
+</script>
+</body>
+</html>
