@@ -1478,6 +1478,7 @@ function submitForm() {
 </script>
 
 <script>
+(function updateCartBadge() {
   try {
     const stored = JSON.parse(sessionStorage.getItem('rcdCart') || '{}');
     const count = Object.keys(stored).length;
