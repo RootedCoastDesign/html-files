@@ -25,12 +25,12 @@ const PRICE_MAP = {
   reskin: { type: 'one_time', priceId: 'price_1TmR4XLHhM9UWHAYfZFWVzOv', fullPrice: 349 },
 
   // ── Care Plans (recurring monthly) ──
-  'care-sapling':      { type: 'subscription', priceId: 'price_1Tmy7rLHhM9UWHAYFTuEQvE2', monthly: 59  },
-  'care-timber':       { type: 'subscription', priceId: 'price_1Tmy8KLHhM9UWHAYB0rtfyJ5', monthly: 99  },
-  'care-oldgrowth':    { type: 'subscription', priceId: 'price_1Tmy8aLHhM9UWHAYEtXnumyK', monthly: 179 },
-  'care-sapling-sa':   { type: 'subscription', priceId: 'price_1Tmy7rLHhM9UWHAYFTuEQvE2', monthly: 59  },
-  'care-timber-sa':    { type: 'subscription', priceId: 'price_1Tmy8KLHhM9UWHAYB0rtfyJ5', monthly: 99  },
-  'care-oldgrowth-sa': { type: 'subscription', priceId: 'price_1Tmy8aLHhM9UWHAYEtXnumyK', monthly: 179 },
+  'care-sapling':      { type: 'subscription', priceId: 'price_1TnnlPLHhM9UWHAYrgPsETrm', monthly: 59  },
+  'care-timber':       { type: 'subscription', priceId: 'price_1TnnlPLHhM9UWHAYsoNRnrdv', monthly: 99  },
+  'care-oldgrowth':    { type: 'subscription', priceId: 'price_1TnnlQLHhM9UWHAYHmcRSSgQ', monthly: 179 },
+  'care-sapling-sa':   { type: 'subscription', priceId: 'price_1TnnlPLHhM9UWHAYrgPsETrm', monthly: 59  },
+  'care-timber-sa':    { type: 'subscription', priceId: 'price_1TnnlPLHhM9UWHAYsoNRnrdv', monthly: 99  },
+  'care-oldgrowth-sa': { type: 'subscription', priceId: 'price_1TnnlQLHhM9UWHAYHmcRSSgQ', monthly: 179 },
 
   // ── Care Plans — 6-Month lump sum (5 months, 1 month free) ──
   'care-sapling-6mo':      { type: 'one_time', priceId: 'price_1Tn3z2LHhM9UWHAYmDWr7jY9', fullPrice: 295  },
