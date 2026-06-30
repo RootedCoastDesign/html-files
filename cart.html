@@ -304,8 +304,10 @@ const PRODUCTS = {
 // Matches the cutoff in services.html and api/create-checkout.js.
 const PROMO_END  = new Date('2026-07-07T06:59:59Z');
 const PROMO_PKGS = ['sapling','timber','oldgrowth'];
-function promoActive() { return new Date() <= PROMO_END; }
-function effPrice(key, full) { return (promoActive() && PROMO_PKGS.includes(key)) ? Math.round(full * 0.85) : full; }
+// Optimistic local guess so the cart renders instantly; corrected below by the
+// server (api/promo-status), since some visitors' device clocks are wrong.
+let promoActive = new Date() <= PROMO_END;
+function effPrice(key, full) { return (promoActive && PROMO_PKGS.includes(key)) ? Math.round(full * 0.85) : full; }
 
 let cart = {};
 const params = new URLSearchParams(location.search);
@@ -451,6 +453,14 @@ async function submitOrder() {
 }
 
 render();
+
+// Server is the source of truth for the promo window — corrects the optimistic
+// local guess above if this device's clock is wrong (e.g. the iPhone bug where
+// the discount silently failed to show because the device thought it was past
+// the promo end date).
+fetch('/api/promo-status').then(r => r.json()).then(d => {
+  if (typeof d.active === 'boolean' && d.active !== promoActive) { promoActive = d.active; render(); }
+}).catch(() => {});
 </script>
 <script>
 (function updateCartBadge() {

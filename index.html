@@ -1858,20 +1858,30 @@ function filterPort(btn, cat) {
   // 4th of July sale banner — self-removing, no manual cleanup needed.
   // Matches the same cutoff used by api/create-checkout.js (PROMO_END).
   var PROMO_END = new Date('2026-07-07T06:59:59Z'); // 11:59:59pm PDT, July 6, 2026
-  if (new Date() > PROMO_END) return; // promo over — banner stays hidden, layout untouched
 
-  var bar = document.getElementById('julyPromoBar');
-  if (!bar) return;
-  bar.style.display = 'block';
+  // Server is the source of truth (avoids relying on the visitor's device
+  // clock, which can be wrong and silently hide the banner). Falls back to
+  // the local clock only if the request fails (e.g. offline).
+  fetch('/api/promo-status').then(function(r){ return r.json(); }).then(function(d){
+    if (d && d.active) showBanner();
+  }).catch(function(){
+    if (new Date() <= PROMO_END) showBanner();
+  });
 
-  var h = bar.offsetHeight || 40;
-  var nav = document.querySelector('nav');
-  if (nav) nav.style.top = h + 'px';
+  function showBanner() {
+    var bar = document.getElementById('julyPromoBar');
+    if (!bar) return;
+    bar.style.display = 'block';
 
-  var hero = document.querySelector('.hero');
-  if (hero) {
-    var current = parseInt(window.getComputedStyle(hero).paddingTop, 10) || 0;
-    hero.style.paddingTop = (current + h) + 'px';
+    var h = bar.offsetHeight || 40;
+    var nav = document.querySelector('nav');
+    if (nav) nav.style.top = h + 'px';
+
+    var hero = document.querySelector('.hero');
+    if (hero) {
+      var current = parseInt(window.getComputedStyle(hero).paddingTop, 10) || 0;
+      hero.style.paddingTop = (current + h) + 'px';
+    }
   }
 })();
 </script>

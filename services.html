@@ -2285,8 +2285,17 @@ syncAllButtons();
   // 4th of July sale pricing — self-removing, no manual cleanup needed.
   // Matches the same cutoff used by api/create-checkout.js (PROMO_END) and the homepage banner.
   var PROMO_END = new Date('2026-07-07T06:59:59Z'); // 11:59:59pm PDT, July 6, 2026
-  if (new Date() > PROMO_END) return; // promo over — original pricing stays untouched
 
+  // Server is the source of truth (avoids relying on the visitor's device
+  // clock, which can be wrong and silently hide the promo). Falls back to
+  // the local clock only if the request fails (e.g. offline).
+  fetch('/api/promo-status').then(function(r){ return r.json(); }).then(function(d){
+    if (d && d.active) applyPromo();
+  }).catch(function(){
+    if (new Date() <= PROMO_END) applyPromo();
+  });
+
+  function applyPromo() {
   var note = document.getElementById('julyPromoNote');
   if (note) note.style.display = 'block';
 
@@ -2319,6 +2328,7 @@ syncAllButtons();
       card.appendChild(ribbon);
     }
   });
+  }
 })();
 </script>
 
