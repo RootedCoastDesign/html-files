@@ -1276,6 +1276,8 @@ nav::after {
     display: flex !important;
     flex-direction: column !important;
     padding-top: 66px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     min-height: auto !important;
     gap: 0 !important;
   }
@@ -1326,7 +1328,7 @@ nav::after {
   }
   @keyframes chevronBounce {
     0%   { opacity: 0.25; transform: translateY(0)   rotate(45deg); box-shadow: none; }
-    50%  { opacity: 1;    transform: translateY(9px) rotate(45deg); box-shadow: 3px 3px 10px rgba(0,200,255,0.7), 3px 3px 22px rgba(0,200,255,0.3); }
+    50%  { opacity: 1;    transform: translateY(9px) rotate(45deg); box-shadow: 0 0 10px rgba(0,200,255,0.7), 0 0 22px rgba(0,200,255,0.3); }
     100% { opacity: 0.25; transform: translateY(0)   rotate(45deg); box-shadow: none; }
   }
   /* Logo sizing */
