@@ -1439,6 +1439,10 @@ nav::after {
 }
 .btn-reskin{display:block;text-align:center;padding:.85rem 1.4rem;border-radius:4px;font-weight:600;font-size:.88rem;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,border-color .2s,color .2s,box-shadow .2s;border:1.5px solid rgba(0,200,255,0.6);background:transparent;color:#00C8FF;letter-spacing:.04em}
 .btn-reskin:hover{background:rgba(0,200,255,0.12);border-color:#00C8FF;box-shadow:0 0 16px rgba(0,200,255,0.25);color:#E0F8FF}
+.reskin-scope-note{margin-top:1.25rem;padding:.85rem 1rem;background:rgba(255,200,60,0.07);border:1px solid rgba(255,200,60,0.25);border-radius:6px;font-size:.8rem;color:#a0bfcc;line-height:1.55}
+.reskin-scope-note strong{color:var(--amber);display:block;margin-bottom:.3rem;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.reskin-notfit{grid-column:1/-1;margin-top:.5rem;padding:.85rem 1rem;background:rgba(255,80,80,0.06);border:1px solid rgba(255,100,100,0.2);border-radius:6px;font-size:.78rem;color:#8aabba;line-height:1.8}
+.reskin-notfit-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#c0808a;margin-bottom:.35rem}
 .reskin-feature:hover {
   background: rgba(0,200,255,0.09);
   border-color: rgba(0,200,255,0.3);
@@ -1530,7 +1534,10 @@ nav::after {
       <div class="reskin-price"><sup>$</sup>349</div>
       <div class="reskin-note">one-time</div>
       <div class="reskin-care">+ Care Plan <strong>from $59/mo</strong> <em>(optional)</em></div>
-      <a href="cart.html" onclick="addToCart(event,'reskin')" data-cart-key="reskin" class="btn-reskin" style="margin-top:1.5rem;width:100%;display:block;text-align:center;text-decoration:none;">🛒 Add to Cart</a>
+      <div class="reskin-scope-note">
+        <strong>Heads up before you book:</strong> The Reskin is a visual refresh only. It covers colors, fonts, images, and copy — not broken functionality, backend issues, or platform migrations. We'll need a quick conversation first to make sure your site is a good fit.
+      </div>
+      <a href="contact.html?pkg=reskin" class="btn-reskin" style="margin-top:1.25rem;width:100%;display:block;text-align:center;text-decoration:none;">💬 Let's Talk First →</a>
     </div>
     <div class="reskin-right">
       <div class="reskin-feature">🎨 Full color &amp; font refresh throughout</div>
@@ -1540,6 +1547,13 @@ nav::after {
       <div class="reskin-feature">✏️ Updated buttons &amp; call-to-action text</div>
       <div class="reskin-feature">🔁 1 round of revisions</div>
       <div class="reskin-feature">⚡ Live in 2–3 business days</div>
+      <div class="reskin-notfit">
+        <div class="reskin-notfit-title">Not a fit if your site has:</div>
+        <div>❌ Broken features or functionality</div>
+        <div>❌ Platform/hosting problems</div>
+        <div>❌ A layout you want restructured</div>
+        <div>❌ Custom code or app integrations</div>
+      </div>
     </div>
   </div>
 </section>

@@ -1653,6 +1653,22 @@ async function submitForm() {
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.fade-up:not(.visible)').forEach(el => obs.observe(el));
 })();
+
+// If someone arrived here via the Reskin "Let's Talk First" button,
+// pre-select Reskin in the Package Interest dropdown so you immediately
+// know what they're inquiring about.
+(function prefillFromUrl() {
+  const pkg = new URLSearchParams(location.search).get('pkg');
+  if (!pkg) return;
+  const sel = document.querySelector('select[name="package_interest"]');
+  if (!sel) return;
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].text.toLowerCase().includes(pkg.toLowerCase())) {
+      sel.selectedIndex = i;
+      break;
+    }
+  }
+})();
 </script>
 <script>
 (function initCircuit() {
