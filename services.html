@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Chakra+Petch:wght@700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=block" rel="stylesheet">
 <style>
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -51,7 +51,7 @@ nav{
   font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:800;
   letter-spacing:.06em;text-transform:uppercase;color:#fff;
 }
-.nav-logo-tag{font-family:'Imperial Script',cursive;font-size:2.1rem;font-weight:400;
+.nav-logo-tag{font-family:'Allura',cursive;font-size:1.55rem;font-weight:400;
   letter-spacing:.02em;line-height:1;color:var(--amber);margin-left:.05rem;}
 .nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center}
 .nav-links button{
@@ -2188,4 +2188,139 @@ function syncAllButtons() {
   // Standard keyed buttons
   document.querySelectorAll('[data-cart-key]').forEach(btn => {
     if (cart[btn.dataset.cartKey]) {
-     
+      setButtonAdded(btn);
+    } else {
+      resetButton(btn);
+    }
+  });
+
+  // Care plan buttons — check against the key for the current interval
+  const keyMap = {
+    monthly:  { sapling:'care-sapling-sa', timber:'care-timber-sa', oldgrowth:'care-oldgrowth-sa' },
+    sixmonth: { sapling:'care-sapling-6mo', timber:'care-timber-6mo', oldgrowth:'care-oldgrowth-6mo' },
+    annual:   { sapling:'care-sapling-annual', timber:'care-timber-annual', oldgrowth:'care-oldgrowth-annual' },
+  };
+  document.querySelectorAll('[data-care-tier]').forEach(btn => {
+    const tier = btn.dataset.careTier;
+    const key  = keyMap[careInterval][tier];
+    if (cart[key]) {
+      setButtonAdded(btn);
+    } else {
+      resetButton(btn);
+    }
+  });
+}
+
+let toastTimer;
+
+function addToCart(e, key) {
+  e.preventDefault();
+  const cart = getCart();
+  cart[key] = key;
+  saveCart(cart);
+  updateBadge();
+  setButtonAdded(e.currentTarget);
+  const name = PRODUCTS_SVC[key] || key;
+  document.getElementById('toastName').textContent = name;
+  const toast = document.getElementById('cartToast');
+  toast.style.display = 'block';
+  requestAnimationFrame(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  });
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(12px)';
+    setTimeout(() => { toast.style.display = 'none'; }, 300);
+  }, 3500);
+}
+
+function updateBadge() {
+  const cart = getCart();
+  const count = Object.keys(cart).length;
+  ['cartBadge','mobileBadge'].forEach(id => {
+    const badge = document.getElementById(id);
+    if (badge) {
+      if (count > 0) { badge.textContent = count; badge.style.display = 'inline-flex'; }
+      else { badge.style.display = 'none'; }
+    }
+  });
+  const burgerDot = document.getElementById('burgerBadge');
+  if (burgerDot) {
+    burgerDot.style.display = count > 0 ? 'block' : 'none';
+  }
+}
+
+// On load: restore badge and button states from session
+updateBadge();
+syncAllButtons();
+</script>
+
+<style>
+#cartToast{display:none;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;font-family:'Inter',sans-serif;min-width:260px;max-width:320px;opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s}
+.toast-inner{background:linear-gradient(135deg,#0D1E35 0%,#0A1628 100%);border:1px solid rgba(0,200,255,0.25);border-radius:12px;padding:1.1rem 1.25rem;box-shadow:0 12px 40px rgba(0,0,0,0.6),0 0 0 1px rgba(0,200,255,0.05) inset}
+.toast-label{font-size:.68rem;color:#00C8FF;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.toast-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#00C8FF;box-shadow:0 0 6px #00C8FF}
+.toast-name{font-size:.95rem;font-weight:600;color:#E8F4F8;margin-bottom:1rem;line-height:1.3}
+.toast-actions{display:flex;gap:.5rem}
+.toast-keep{flex:1;padding:.48rem .7rem;border-radius:6px;border:1px solid rgba(0,200,255,0.2);background:transparent;color:#90B8C8;font-size:.78rem;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color .2s,color .2s}
+.toast-keep:hover{border-color:rgba(0,200,255,0.45);color:#C8E4F0}
+.toast-view{flex:1.4;display:block;text-align:center;background:var(--amber);color:#060E1A;font-weight:700;font-size:.78rem;padding:.48rem .7rem;border-radius:6px;text-decoration:none;letter-spacing:.04em;transition:background .2s}
+.toast-view:hover{background:var(--amber-light)}
+</style>
+<div id="cartToast">
+  <div class="toast-inner">
+    <div class="toast-label">Added to cart</div>
+    <div id="toastName" class="toast-name"></div>
+    <div class="toast-actions">
+      <button class="toast-keep" onclick="const t=document.getElementById('cartToast');t.style.opacity='0';t.style.transform='translateY(12px)';setTimeout(()=>t.style.display='none',300)">Keep Shopping</button>
+      <a href="cart.html" class="toast-view">View Cart →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // 4th of July sale pricing — self-removing, no manual cleanup needed.
+  // Matches the same cutoff used by api/create-checkout.js (PROMO_END) and the homepage banner.
+  var PROMO_END = new Date('2026-07-07T06:59:59Z'); // 11:59:59pm PDT, July 6, 2026
+  if (new Date() > PROMO_END) return; // promo over — original pricing stays untouched
+
+  var note = document.getElementById('julyPromoNote');
+  if (note) note.style.display = 'block';
+
+  document.querySelectorAll('.pkg-price-block[data-pkg]').forEach(function (block) {
+    var full = parseInt(block.getAttribute('data-full'), 10);
+    if (!full) return;
+    var discounted = Math.round(full * 0.85);
+
+    var priceEl = block.querySelector('.pkg-price');
+    if (!priceEl) return;
+    var savings = full - discounted;
+
+    var was = document.createElement('div');
+    was.className = 'pkg-price-was';
+    was.textContent = '$' + full.toLocaleString();
+    block.insertBefore(was, priceEl);
+
+    priceEl.innerHTML = '<sup>$</sup>' + discounted.toLocaleString();
+
+    var save = document.createElement('div');
+    save.className = 'pkg-save-badge';
+    save.textContent = 'Save $' + savings.toLocaleString();
+    priceEl.insertAdjacentElement('afterend', save);
+
+    var card = block.closest('.pkg-card');
+    if (card) {
+      var ribbon = document.createElement('div');
+      ribbon.className = 'pkg-promo-ribbon';
+      ribbon.textContent = '🎆 15% OFF';
+      card.appendChild(ribbon);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
