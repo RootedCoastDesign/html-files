@@ -109,29 +109,4 @@ module.exports = async (req, res) => {
       customer_name:         customerName || '',
       cart_keys:             cartKeys.join(','),
       skipped_keys:          unknownKeys.join(','),
-      balance_due_at_launch: balanceItems.map(b => `${b.key}=$${b.amount}`).join(', '),
-      promo_applied:         promoActive ? PROMO_COUPON_ID : '',
-    },
-    success_url: `${base}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url:  `${base}/cart.html`,
-    billing_address_collection: 'auto',
-  };
-
-  // Stripe doesn't allow combining `discounts` with `allow_promotion_codes`.
-  // During the sale window, auto-apply the coupon — no code needed.
-  // After it ends, fall back to manual promo code entry automatically.
-  if (promoActive) {
-    sessionParams.discounts = [{ coupon: PROMO_COUPON_ID }];
-  } else {
-    sessionParams.allow_promotion_codes = true;
-  }
-
-  try {
-    const session = await stripe.checkout.sessions.create(sessionParams);
-
-    return res.status(200).json({ url: session.url, skipped: unknownKeys });
-  } catch (err) {
-    console.error('Stripe error:', err.message);
-    return res.status(500).json({ error: err.message });
-  }
-};
+      balance_due_at_launch: balanceItems.map(b => `${b.key}=$${b.amount}`).join('
