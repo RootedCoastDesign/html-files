@@ -389,7 +389,7 @@ function render() {
   if (pkgAmt) totHtml += `<div class="total-row"><span>Package</span><span>$${fmt(pkgAmt)}</span></div>`;
   if (fullAmt) totHtml += `<div class="total-row"><span>Add-ons</span><span>$${fmt(fullAmt)}</span></div>`;
   if (projectTotal) totHtml += `<div class="total-row"><span>Project total</span><span>$${fmt(projectTotal)}</span></div>`;
-  if (promoSavings > 0) totHtml += `<div class="total-row" style="color:var(--amber)"><span>🎆 4th of July Sale (15% off build)</span><span>−$${fmt(promoSavings)}</span></div>`;
+  if (promoSavings > 0) totHtml += `<div class="total-row" style="color:var(--amber)"><span>🎆 You saved (4th of July Sale)</span><span>−$${fmt(promoSavings)}</span></div>`;
   if (depAmt) totHtml += `<div class="total-row"><span>50% deposit (due today)</span><span>$${fmt(depAmt)}</span></div>`;
   if (onLaunch) totHtml += `<div class="total-row"><span>50% due on launch</span><span>$${fmt(onLaunch)}</span></div>`;
   if (monthly) totHtml += `<div class="total-row"><span>Care plan (first month)</span><span>$${monthly}/mo</span></div>`;

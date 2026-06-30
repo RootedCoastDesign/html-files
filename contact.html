@@ -1287,12 +1287,12 @@ nav::after {
         <div class="form-row-2">
           <div class="form-group"><label>Business Name</label><input type="text" id="contactBiz" name="business_name" placeholder="Your Business Name" required></div>
           <div class="form-group"><label>Type of Business</label>
-            <select><option value="">Select your industry…</option><option>Home Services (plumbing, HVAC, roofing…)</option><option>Salon, Spa &amp; Beauty</option><option>Consultant or Coach</option><option>Restaurant or Food Business</option><option>Real Estate Agent</option><option>Health &amp; Wellness</option><option>Landscaping or Cleaning</option><option>Photography or Events</option><option>Other</option></select>
+            <select name="business_type"><option value="">Select your industry…</option><option>Home Services (plumbing, HVAC, roofing…)</option><option>Salon, Spa &amp; Beauty</option><option>Consultant or Coach</option><option>Restaurant or Food Business</option><option>Real Estate Agent</option><option>Health &amp; Wellness</option><option>Landscaping or Cleaning</option><option>Photography or Events</option><option>Other</option></select>
           </div>
         </div>
 
         <div class="form-group"><label>Package Interest</label>
-          <select><option>Not sure yet — help me choose</option><option>The Sapling ($799 + $59/mo)</option><option>The Timber ($1,399 + $99/mo)</option><option>The Old Growth ($2,699 + $179/mo)</option><option>The Reskin ($349 one-time)</option></select>
+          <select name="package_interest"><option>Not sure yet — help me choose</option><option>The Sapling ($799 + $59/mo)</option><option>The Timber ($1,399 + $99/mo)</option><option>The Old Growth ($2,699 + $179/mo)</option><option>The Reskin ($349 one-time)</option></select>
         </div>
 
         <div class="form-group"><label>Tell us about your business &amp; goals</label><textarea name="message" placeholder="What does your business do? Do you have an existing website? What's most important to you in a new site?" required></textarea></div>
@@ -1312,7 +1312,7 @@ nav::after {
       <div class="form-success" id="formSuccess">
         <span class="form-success-icon">🌲</span>
         <h3>Message received!</h3>
-        <p>Thanks for reaching out. We'll get back to you within one business day with a personal response and a recommendation that fits your business.<br><br>In the meantime, feel free to browse our <a onclick="location.href='portfolio.html'">portfolio</a> or <a onclick="location.href='services.html'">services page</a>.</p>
+        <p>Thanks for reaching out. We'll get back to you within one business day with a personal response and a recommendation that fits your business.<br><br>In the meantime, feel free to browse our <a href="portfolio.html">portfolio</a> or <a href="services.html">services page</a>.</p>
       </div>
     </div>
   </div>
@@ -1355,7 +1355,7 @@ nav::after {
       <button class="pkg-mini-btn" data-cart-key="oldgrowth" onclick="addToCartAndGo('oldgrowth')">Add to Cart →</button>
     </div>
   </div>
-  <p class="fade-up" style="text-align:center;font-size:.82rem;color:#4A7A9B;margin-top:1.5rem;">Not sure which package? <a onclick="location.href='services.html'" style="color:var(--amber);cursor:pointer;">View all packages</a> or fill out the form above and we'll help you choose.</p>
+  <p class="fade-up" style="text-align:center;font-size:.82rem;color:#4A7A9B;margin-top:1.5rem;">Not sure which package? <a href="services.html" style="color:var(--amber);cursor:pointer;">View all packages</a> or fill out the form above and we'll help you choose.</p>
 </section>
 
 <style>
@@ -1573,7 +1573,7 @@ function addToCartAndGo(key) {
     <div class="cfaq-item fade-up"><div class="cfaq-q">Is the discovery call really free?</div><div class="cfaq-a">Yes, completely. 15 minutes, no pitch, no pressure. We just want to understand your business before making a recommendation.</div></div>
     <div class="cfaq-item fade-up"><div class="cfaq-q">Do you work with businesses outside Oregon?</div><div class="cfaq-a">Absolutely. We work with local businesses across the US. Everything is handled remotely — Zoom, email, and Loom.</div></div>
     <div class="cfaq-item fade-up"><div class="cfaq-q">What's the first step?</div><div class="cfaq-a">Fill out the form above or email us. We'll reply with a quick overview of what we'd recommend and any questions we have.</div></div>
-    <div class="cfaq-item fade-up"><div class="cfaq-q">Can I see examples first?</div><div class="cfaq-a">Of course — <a onclick="location.href='portfolio.html'">check out our portfolio</a> to see the kinds of sites we build.</div></div>
+    <div class="cfaq-item fade-up"><div class="cfaq-q">Can I see examples first?</div><div class="cfaq-a">Of course — <a href="portfolio.html">check out our portfolio</a> to see the kinds of sites we build.</div></div>
     <div class="cfaq-item fade-up"><div class="cfaq-q">When can you start?</div><div class="cfaq-a">Usually within a week of signing. Once we receive your content, the 5-day clock starts immediately.</div></div>
   </div>
 </section>

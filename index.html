@@ -1428,7 +1428,7 @@ nav::after {
       <span class="trust-item">Live in 5 Days</span>
       <span class="trust-item">No Big Agency Markup</span>
       <span class="trust-item">We Handle Everything</span>
-      <span class="trust-item">Full builds from $799</span>
+      <span class="trust-item">Full builds from $<span id="heroStartPrice">799</span></span>
     </div>
   </div>
   <div class="hero-visual">
@@ -1448,7 +1448,7 @@ nav::after {
 <div class="proof-strip">
   <div class="proof-stat"><div class="proof-num">5</div><div class="proof-desc">Days to Launch</div></div>
   <div class="proof-div"></div>
-  <div class="proof-stat"><div class="proof-num">$799</div><div class="proof-desc">Full Build Starting Price</div></div>
+  <div class="proof-stat"><div class="proof-num">$<span id="statStartPrice">799</span></div><div class="proof-desc">Full Build Starting Price</div></div>
   <div class="proof-div"></div>
   <div class="proof-stat"><div class="proof-num">8+</div><div class="proof-desc">Niche Templates</div></div>
   <div class="proof-div"></div>
@@ -1538,7 +1538,7 @@ nav::after {
   <div class="faq-grid">
     <div class="faq-item fade-up"><div class="faq-q">Do I own my website when it's done?</div><div class="faq-a">Yes — all your content, copy, and images belong to you entirely. If you ever decide to move on, we hand over everything. The only thing we retain is the underlying template license.</div></div>
     <div class="faq-item fade-up"><div class="faq-q">What if I don't have a logo or photos yet?</div><div class="faq-a">No problem. We can source professional stock photography that matches your brand, and we can point you to fast, affordable logo options. We work with what you have.</div></div>
-    <div class="faq-item fade-up"><div class="faq-q">Can I cancel the Care Plan anytime?</div><div class="faq-a">After the initial 3-month minimum, you can cancel with 30 days' notice. We'll provide all your files and content — no hostage-holding, ever.</div></div>
+    <div class="faq-item fade-up"><div class="faq-q">Can I cancel the Care Plan anytime?</div><div class="faq-a">Yes, it's month-to-month with no minimum commitment. Cancel anytime with 30 days' notice. We'll provide all your files and content, no hostage-holding, ever.</div></div>
     <div class="faq-item fade-up"><div class="faq-q">How is this different from Wix or Squarespace?</div><div class="faq-a">DIY builders work great if you have 20+ hours and design experience. Most business owners get frustrated and end up with something half-finished. We handle everything — and you're live in 5 days.</div></div>
   </div>
 </section>
@@ -1863,9 +1863,9 @@ function filterPort(btn, cat) {
   // clock, which can be wrong and silently hide the banner). Falls back to
   // the local clock only if the request fails (e.g. offline).
   fetch('/api/promo-status').then(function(r){ return r.json(); }).then(function(d){
-    if (d && d.active) showBanner();
+    if (d && d.active) { showBanner(); updateStartingPrice(); }
   }).catch(function(){
-    if (new Date() <= PROMO_END) showBanner();
+    if (new Date() <= PROMO_END) { showBanner(); updateStartingPrice(); }
   });
 
   function showBanner() {
@@ -1882,6 +1882,16 @@ function filterPort(btn, cat) {
       var current = parseInt(window.getComputedStyle(hero).paddingTop, 10) || 0;
       hero.style.paddingTop = (current + h) + 'px';
     }
+  }
+
+  function updateStartingPrice() {
+    // The Sapling ($799) is the lowest-priced full build — shows its sale
+    // price in the hero trust bar and stats row instead of the regular price.
+    var discounted = Math.round(799 * 0.85);
+    var hero = document.getElementById('heroStartPrice');
+    if (hero) hero.textContent = discounted;
+    var stat = document.getElementById('statStartPrice');
+    if (stat) stat.textContent = discounted;
   }
 })();
 </script>
